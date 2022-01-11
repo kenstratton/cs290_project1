@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ChatSpace {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/base.css') }}">
+    </head>
+    <body>
+        <header>
+            <a id="top_title" href="/">CHAT SPACE</a>
+            <div id="top_menu">
+                <a id="a_login" href="login">LOG IN</a>
+                <a id="a_signup" href="signup">SIGN UP</a>
+                <a id="a_add_group" href="add_group">＋ADD</a>
+            </div>
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+</html>

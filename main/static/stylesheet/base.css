@@ -1,0 +1,11 @@
+* { box-sizing: border-box; }
+html { font-family: "Helvetica Neue"; font-weight: lighter; color: #454545; }
+body {
+  height: 100vh;
+  min-height: 350px;
+  min-width: 1000px;
+  margin: auto;
+  display: flex; }
+h1 {
+  font-family: "HelveticaNeue-CondensedBold"; 
+  text-align: center;}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}ADD GROUP{% endblock %}
+{% block content %}
+    <div class="top">
+        <form action="/add_group">
+             <label for="group_name">Group Name</label><br>
+             <input type="text" id="group_name" name="group_name"><br>
+             <label for="group_member">Member</label><br>
+             <input type="text" id="group_member" name="group_member"><br>
+             <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
