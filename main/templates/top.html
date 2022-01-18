@@ -1,16 +1,44 @@
 {% extends 'base.html' %}
-
 {% block title %}TOP{% endblock %}
+{% block header %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/') }}"> -->
+{% endblock header %}
 {% block content %}
-    <div class="top">
-        <div id="group_side">
-            <p>Group 1</p>
-            <a id="add_group" href="add_group">＋ADD</a>
+    <div id="top">
+        <div id="side">
+            <a class="side_link" id="side_add_link" href="add_group"><i class="fas fa-plus"></i></a>
+            <a class="side_link" id="side_search_link" href="/"><i class="fas fa-search-plus"></i></a>
         </div>
-        <div id="chat_side">
-            <div class="chat">
-                <p class="nickname">Jhone</p><br>
-                <p class="text">Hello</p>
+
+        <div id="channel">
+            <div id="channel_title">CHANNELS</div>
+            <ul id="channel_list">
+                <li><a class="channel_link" id="marked" href="/">▶︎ Python</a></li>
+                <li><a class="channel_link" href="/">▷ HTML</a></li>
+                <li><a class="channel_link" href="/">▷ CSS</a></li>
+            </ul>
+        </div>
+
+        <div id="main">
+            <div id="main_header">
+                 <span id="channel_name">▶︎ Python</span>
+                 <div id="search_bar">Search</div>
+            </div>
+
+            <div id="main_content">
+                <div class="chat">
+                    <div class="chat_info">
+                        <span class="nickname">Jhone</span>
+                        <span class="chat_date">01/13/2021</span>
+                    </div>
+                    <p class="text">Hello</p>
+                </div>
+            </div>
+
+            <div id="main_footer">
+                <div id="message_bar">
+                    Message @Python
+                </div>
             </div>
         </div>
     </div>

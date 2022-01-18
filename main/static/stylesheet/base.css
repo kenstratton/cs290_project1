@@ -1,11 +1,145 @@
 * { box-sizing: border-box; }
-html { font-family: "Helvetica Neue"; font-weight: lighter; color: #454545; }
+
+html {
+  font-family: "Helvetica Neue"; 
+  font-weight: lighter;}
 body {
   height: 100vh;
-  min-height: 350px;
-  min-width: 1000px;
   margin: auto;
-  display: flex; }
-h1 {
-  font-family: "HelveticaNeue-CondensedBold"; 
-  text-align: center;}
+  background: #333333;}
+a {
+  outline: none;
+  text-decoration: none;}
+ul {
+  list-style-type: none}
+p {
+  margin: 0;}
+
+
+/* Header */
+header {
+  width: 100%;
+  padding: 13px;
+  position: fixed;
+  text-align: center;
+  color: #ffffff;}
+#home_link {
+  font-size: 32px;
+  color: #ffffff;}
+.auth_link {
+  margin: 10px;
+  font-size: 14px;
+  color: #ffffff;}
+
+
+/* Top */
+#top {
+  height: 100%;
+  padding-top: 80px;
+  display: flex;}
+
+/* Top > Side */
+#side {
+  height: fit-content;
+  width: 10%;
+  display: grid;
+  justify-items: center;
+  font-size: 30px;}
+.side_link {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  text-align: center;
+  background: #444444;}
+.side_link i {
+  line-height: 60px;
+  color: #ffffff;}
+
+/* Top > Channel */
+#channel {
+  width: 15%;
+  background: #444444;}
+#channel_title {
+  height: 50px;
+  padding-left: 10px;
+  border-bottom: 2px solid #333333;
+  display: grid;
+  align-items: center;
+  font-size: 18px;
+  font-weight: normal;
+  color: #ffffff;}
+#channel_list {
+  padding-left: 10px;}
+#channel_list li {
+  margin-bottom: 5px;}
+.channel_link {
+  font-size: 14px;
+  color: #ffffff;}
+#marked {
+  font-weight: normal;
+}
+
+/* Top > Main */
+#main {
+  width: 75%;
+  background: #555555;}
+/* Top > Main > Header */
+#main_header {
+  height: 50px;
+  width: 75%;
+  border-bottom: 2px solid #333333;
+  display: flex;
+  align-items: center;
+  position: fixed;}
+#channel_name {
+  padding: 0 10px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;}
+#search_bar {
+  height: 30px;
+  line-height: 30px;
+  width: 400px;
+  margin-left: 5%;
+  padding: 0 10px;
+  border-radius: 3px;
+  font-weight: normal;
+  background: #333333;
+  color: #555555;}
+/* Top > Main > Content */
+#main_content {
+  height: 100%;
+  padding: 50px 0 80px 0;
+}
+.chat {
+  padding: 25px;
+  color: #ffffff;}
+.nickname {
+  font-weight: normal;}
+.chat_date {
+  font-weight: normal;
+  font-size: 12px;
+  color: #999999;}
+/* Top > Main > Footer */
+#main_footer {
+  height: 80px;
+  width: 75%;
+  position: fixed;
+  bottom: 0;}
+#message_bar {
+  height: 50px;
+  line-height: 50px;
+  width: 85%;
+  padding: 0 30px;
+  margin: auto;
+  border-radius: 3px;
+  font-weight: normal;
+  background: #666666;
+  color: #999999;}
+
+
+
+/* Authentification */
+
+

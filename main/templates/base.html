@@ -3,14 +3,16 @@
     <head>
         <title>ChatSpace {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/base.css') }}">
+        <script src="https://kit.fontawesome.com/8989297e1e.js" crossorigin="anonymous"></script>
+        {% block head %}{% endblock head %}
     </head>
     <body>
         <header>
-            <a id="top_title" href="/">CHAT SPACE</a>
-            <div id="top_menu">
-                <a id="a_login" href="login">LOG IN</a>
-                <a id="a_signup" href="signup">SIGN UP</a>
-                <a id="a_add_group" href="add_group">＋ADD</a>
+            <a id="home_link" href="/">CHAT SPACE</a>
+            <div id="header_menu">
+                <a class="auth_link" id="" href="login">LOG IN</a>
+                <span>/</span>
+                <a class="auth_link" id="" href="signup">SIGN UP</a>
             </div>
         </header>
         {% block content %}{% endblock %}
