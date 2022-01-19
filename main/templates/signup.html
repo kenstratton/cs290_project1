@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}SIGNUP{% endblock %}
-{% block content %}
-    <div class="signup">
-        <form>
-             <label for="nickname">Nick Name</label><br>
-             <input type="text" id="nickname" name="nickname"><br>
-             <label for="password">Password</label><br>
-             <input type="text" id="password" name="password"><br>
-             <input type="submit" value="Submit">
+{% block auth %}
+    <div class="entry" id="signup">
+        <span class="entry_form_title">SIGN UP</span>
+        <form action="/signup">
+            <label class="entry_label" for="nickname">Nickname</label><br>
+            <input class="entry_input" type="text" name="nickname" placeholder="Nickname" id="nickname"><br>
+            <label class="entry_label" for="password">Password</label><br>
+            <input class="entry_input" type="password" name="password" placeholder="Password" id="password"><br>
+            <input class="entry_submit" type="submit" value="Submit">
         </form>
     </div>
 {% endblock %}

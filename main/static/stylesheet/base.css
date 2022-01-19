@@ -14,15 +14,23 @@ ul {
   list-style-type: none}
 p {
   margin: 0;}
+input {
+  border: none;
+  outline: none;}
+button {
+  border: none;
+  outline: none;}
+
 
 
 /* Header */
 header {
   width: 100%;
   padding: 13px;
-  position: fixed;
+  /* position: fixed; */
   text-align: center;
-  color: #ffffff;}
+  color: #ffffff;
+  background: #333333;}
 #home_link {
   font-size: 32px;
   color: #ffffff;}
@@ -32,13 +40,84 @@ header {
   color: #ffffff;}
 
 
-/* Top */
-#top {
-  height: 100%;
-  padding-top: 80px;
+
+/* Auth */
+#auth {
+  height: calc(100% - 82px);
+  min-height: 301px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #444444;}
+
+/* Entry */
+.entry {
+  height: 300px;
+  width: 700px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  background: #333333;
+  border-radius: 10px;}
+#entry_desc {
+  margin: 0 0 30px;}
+#entry_title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px;}
+#entry_text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;}
+.entry_link {
+  height: 40px;
+  width: 100px;
+  line-height: 40px;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: normal;
+  background: #555555;}
+.entry_link:hover {
+  background: #666666;}
+
+/* Login Signup*/
+.entry_form_title {
+  font-size: 20px;}
+.entry_label {
+  font-size: 18px;
+  font-weight: normal;}
+.entry_input {
+  margin: 5px 0 20px;
+  background: #444444;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #ffffff;}
+.entry_submit {
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #ffffff;
+  background: #555555;}
+.entry_submit:hover {
+  background: #666666;}
+
+
+
+/* Content */
+#content {
+  height: calc(100% - 82px);
   display: flex;}
 
-/* Top > Side */
+/* Content > Side */
 #side {
   height: fit-content;
   width: 10%;
@@ -56,6 +135,7 @@ header {
   line-height: 60px;
   color: #ffffff;}
 
+/* Content > Top */
 /* Top > Channel */
 #channel {
   width: 15%;
@@ -91,7 +171,8 @@ header {
   border-bottom: 2px solid #333333;
   display: flex;
   align-items: center;
-  position: fixed;}
+  position: fixed;
+  background: #555555;}
 #channel_name {
   padding: 0 10px;
   color: #ffffff;
@@ -111,9 +192,9 @@ header {
 #main_content {
   height: 100%;
   padding: 50px 0 80px 0;
-}
+  overflow: scroll;}
 .chat {
-  padding: 25px;
+  padding: 20px;
   color: #ffffff;}
 .nickname {
   font-weight: normal;}
@@ -126,7 +207,8 @@ header {
   height: 80px;
   width: 75%;
   position: fixed;
-  bottom: 0;}
+  bottom: 0;
+  background: #555555;}
 #message_bar {
   height: 50px;
   line-height: 50px;
@@ -137,9 +219,3 @@ header {
   font-weight: normal;
   background: #666666;
   color: #999999;}
-
-
-
-/* Authentification */
-
-

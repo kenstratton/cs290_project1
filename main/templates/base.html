@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ChatSpace {% block title %}{% endblock %}</title>
+        <title>ChatSpace - {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/base.css') }}">
         <script src="https://kit.fontawesome.com/8989297e1e.js" crossorigin="anonymous"></script>
         {% block head %}{% endblock head %}
@@ -15,6 +15,19 @@
                 <a class="auth_link" id="" href="signup">SIGN UP</a>
             </div>
         </header>
-        {% block content %}{% endblock %}
+        {% if type == "in" %}
+            <div id="content">
+                <div id="side">
+                    <a class="side_link" id="side_add_link" href="add_channel"><i class="fas fa-plus"></i></a>
+                    <a class="side_link" id="side_search_link" href="/"><i class="fas fa-search-plus"></i></a>
+                </div>
+                {% block content %}{% endblock %}
+            </div>
+        {% else %}
+            <div id="auth">
+                {% block auth %}{% endblock %}
+            </div>
+
+        {% endif %}
     </body>
 </html>
