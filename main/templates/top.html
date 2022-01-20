@@ -2,7 +2,7 @@
 
 {% block title %}TOP{% endblock %}
 {% block content %}
-    <div id="channel">
+    <div id="channel_side">
         <div id="channel_title">CHANNELS</div>
         <ul id="channel_list">
             <li><a class="channel_link" id="marked" href="/">▶︎ Python</a></li>
@@ -11,12 +11,12 @@
         </ul>
     </div>
 
-    <div id="main">
-        <div id="main_header">
+    <div id="channel_main">
+        <div id="channel_main_header">
              <span id="channel_name">▶︎ Python</span>
              <div id="search_bar">Search</div>
         </div>
-        <div id="main_content">
+        <div id="channel_main_content">
             {% for _ in range(10) %}
             <div class="chat">
                 <div class="chat_info">
@@ -27,7 +27,7 @@
             </div>
             {% endfor %}
         </div>
-        <div id="main_footer">
+        <div id="channel_main_footer">
             <div id="message_bar">
                 Message @Python
             </div>

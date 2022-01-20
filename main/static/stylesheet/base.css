@@ -1,6 +1,7 @@
 * { box-sizing: border-box; }
 
 html {
+  min-width: 600px;
   font-family: "Helvetica Neue"; 
   font-weight: lighter;}
 body {
@@ -20,6 +21,31 @@ input {
 button {
   border: none;
   outline: none;}
+
+/* Form */
+.form_title {
+  font-size: 20px;}
+.label_input {
+  font-size: 18px;
+  font-weight: normal;}
+.input_text {
+  margin: 5px 0 20px;
+  background: #444444;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #ffffff;}
+.submit {
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #ffffff;
+  background: #555555;}
+.submit:hover {
+  background: #666666;}
 
 
 
@@ -45,9 +71,8 @@ header {
 #auth {
   height: calc(100% - 82px);
   min-height: 301px;
+  min-width: 701px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   background: #444444;}
 
 /* Entry */
@@ -55,6 +80,7 @@ header {
   height: 300px;
   width: 700px;
   padding: 25px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -85,36 +111,13 @@ header {
 .entry_link:hover {
   background: #666666;}
 
-/* Login Signup*/
-.entry_form_title {
-  font-size: 20px;}
-.entry_label {
-  font-size: 18px;
-  font-weight: normal;}
-.entry_input {
-  margin: 5px 0 20px;
-  background: #444444;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #ffffff;}
-.entry_submit {
-  height: 40px;
-  width: 100px;
-  border-radius: 5px;
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: normal;
-  color: #ffffff;
-  background: #555555;}
-.entry_submit:hover {
-  background: #666666;}
-
 
 
 /* Content */
 #content {
   height: calc(100% - 82px);
+  min-height: 300px;
+  min-width: 750px;
   display: flex;}
 
 /* Content > Side */
@@ -135,10 +138,15 @@ header {
   line-height: 60px;
   color: #ffffff;}
 
+#main {
+  width: 90%;
+  display: flex;
+  background: #444444;}
+
 /* Content > Top */
 /* Top > Channel */
-#channel {
-  width: 15%;
+#channel_side {
+  width: 17%;
   background: #444444;}
 #channel_title {
   height: 50px;
@@ -160,18 +168,21 @@ header {
   font-weight: normal;
 }
 
-/* Top > Main */
-#main {
-  width: 75%;
+/* Top > Chanel Main */
+#channel_main {
+  width: 83%;
   background: #555555;}
-/* Top > Main > Header */
-#main_header {
+/* Top > Channel Main > Header */
+#channel_main_header {
   height: 50px;
   width: 75%;
-  border-bottom: 2px solid #333333;
+  min-width: 450px;
+  padding-right: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
+  border-bottom: 2px solid #333333;
   background: #555555;}
 #channel_name {
   padding: 0 10px;
@@ -181,15 +192,15 @@ header {
 #search_bar {
   height: 30px;
   line-height: 30px;
-  width: 400px;
+  width: 250px;
   margin-left: 5%;
   padding: 0 10px;
   border-radius: 3px;
   font-weight: normal;
   background: #333333;
   color: #555555;}
-/* Top > Main > Content */
-#main_content {
+/* Top > Channel Main > Content */
+#channel_main_content {
   height: 100%;
   padding: 50px 0 80px 0;
   overflow: scroll;}
@@ -202,10 +213,11 @@ header {
   font-weight: normal;
   font-size: 12px;
   color: #999999;}
-/* Top > Main > Footer */
-#main_footer {
+/* Top > Channel Main > Footer */
+#channel_main_footer {
   height: 80px;
   width: 75%;
+  min-width: 500px;
   position: fixed;
   bottom: 0;
   background: #555555;}
@@ -219,3 +231,89 @@ header {
   font-weight: normal;
   background: #666666;
   color: #999999;}
+
+
+
+/* Peofile */
+#profile {
+  width: 100%;
+  min-height: 301px;
+  min-width: 701px;
+  display: flex;
+  background: #444444;}
+
+
+
+/* Add Channel */
+#add_channel {
+  width: 100%;
+  min-height: 401px;
+  min-width: 701px;
+  display: flex;
+  background: #444444;}
+#add_channel_wrapper {
+  height: 400px;
+  width: 700px;
+  padding: 25px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  background: #333333;
+  border-radius: 10px;}
+#added_member_list {
+  height: 80px;
+  width: 230px;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: scroll;}
+.added_member_info {
+  width: fit-content;
+  padding: 3px 6px;
+  margin: 0 7px 7px 0;
+  float: left;
+  border-radius: 5px;
+  background: #444444;
+  cursor: default;}
+.added_member_info:hover {
+  background: #555555;}
+.fa-times {
+  cursor: pointer;}
+
+
+
+/* Search Chennel */
+#search_channel {
+  width: 100%;
+  min-height: 401px;
+  min-width: 701px;
+  display: flex;
+  background: #444444;}
+#search_channel_wrapper {
+  height: 400px;
+  width: 700px;
+  padding: 25px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  background: #333333;
+  border-radius: 10px;}
+#search_block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
+#channel_search_bar {
+  width: 250px;}
+#searched_channel_list {
+  height: 220px;
+  width: 200px;
+  overflow: scroll;
+  font-size: 14px;}
+.searched_channel_info {
+  padding: 8px 15px 8px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #555555;}

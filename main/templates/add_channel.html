@@ -2,13 +2,24 @@
 
 {% block title %}ADD CHANNEL{% endblock %}
 {% block content %}
-    <div class="top">
-        <form action="/add_group">
-             <label for="group_name">Group Name</label><br>
-             <input type="text" id="group_name" name="group_name"><br>
-             <label for="group_member">Member</label><br>
-             <input type="text" id="group_member" name="group_member"><br>
-             <input type="submit" value="Submit">
-        </form>
+    <div id="add_channel">
+        <div id="add_channel_wrapper">
+            <span class="form_title">ADD CHANNEL</span>
+            <form action="/add_channel">
+                <label class="label_input" for="channel_name">Group Name</label><br>
+                <input class="input_text" type="text" name="channel_name"><br>
+                <label class="label_input" for="channel_member">Member</label><br>
+                <input class="input_text" type="text" name="channel_member"><br>
+                <div id="added_member_list">
+                    {% for _ in range(10) %}
+                        <div class="added_member_info">
+                            <span class="added_member_name">Jhone</span>
+                            <i class="fas fa-times"></i>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input class="submit" type="submit" value="Submit">
+            </form>
+        </div>
     </div>
 {% endblock %}

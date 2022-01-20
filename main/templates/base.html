@@ -10,24 +10,31 @@
         <header>
             <a id="home_link" href="/">CHAT SPACE</a>
             <div id="header_menu">
-                <a class="auth_link" id="" href="login">LOG IN</a>
-                <span>/</span>
-                <a class="auth_link" id="" href="signup">SIGN UP</a>
+                {% if type == "in" %}
+                    <a class="auth_link" id="" href="entry">LOG OUT</a>
+                    <span>/</span>
+                    <a class="auth_link" id="" href="profile">PROFILE</a>
+                {% else %}
+                    <a class="auth_link" id="" href="login">LOG IN</a>
+                    <span>/</span>
+                    <a class="auth_link" id="" href="signup">SIGN UP</a>
+                {% endif %}
             </div>
         </header>
         {% if type == "in" %}
             <div id="content">
                 <div id="side">
                     <a class="side_link" id="side_add_link" href="add_channel"><i class="fas fa-plus"></i></a>
-                    <a class="side_link" id="side_search_link" href="/"><i class="fas fa-search-plus"></i></a>
+                    <a class="side_link" id="side_search_link" href="search"><i class="fas fa-search-plus"></i></a>
                 </div>
-                {% block content %}{% endblock %}
+                <div id="main">
+                    {% block content %}{% endblock %}
+                </div>
             </div>
         {% else %}
             <div id="auth">
                 {% block auth %}{% endblock %}
             </div>
-
         {% endif %}
     </body>
 </html>

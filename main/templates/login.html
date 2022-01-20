@@ -3,13 +3,13 @@
 {% block title %}LOGIN{% endblock %}
 {% block auth %}
     <div class="entry" id="login">
-        <span class="entry_form_title">LOG IN</span>
+        <span class="form_title">LOG IN</span>
         <form action="/login">
-            <label class="entry_label" for="nickname">Nickname</label><br>
-            <input class="entry_input" type="text" name="nickname" placeholder="Nickname" id="nickname"><br>
-            <label class="entry_label" for="password">Password</label><br>
-            <input class="entry_input" type="password" name="password" placeholder="Password" id="password"><br>
-            <input class="entry_submit" type="submit" value="Submit">
+            <label class="label_input" for="nickname">Nickname</label><br>
+            <input class="input_text" type="text" name="nickname" placeholder="Nickname" id="nickname"><br>
+            <label class="label_input" for="password">Password</label><br>
+            <input class="input_text" type="password" name="password" placeholder="Password" id="password"><br>
+            <input class="submit" type="submit" value="Submit">
         </form>
     </div>
 {% endblock %}
