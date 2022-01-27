@@ -3,11 +3,14 @@
 {% block title %}ENTRY{% endblock %}
 {% block auth %}
     <div class="entry">
-        <dl id="entry_desc">
-            <dt id="entry_title">Welcome to Chat Space!</dt>
-            <dd id="entry_text">Chat Space provides space to organize your project</dd>
-            <dd id="entry_text">by topic and facilitate communication.</dd>
-        </dl>
+        <table id="entry_desc">
+            <tr><th id="entry_title">Welcome to Chat Space!</th></tr>
+            <tr><td id="entry_text">
+                 Chat Space provides space to organize your project
+                 <br>
+                 by topic and facilitate communication.
+            </td></tr>
+        </table>
         <div id="entry_btn_list">
             <a class="entry_link" onclick="location.href='/login'">LOG IN</a>
             <a class="entry_link" onclick="location.href='/signup'">SGIN UP</a>

@@ -17,14 +17,30 @@
              <div id="search_bar">Search</div>
         </div>
         <div id="channel_main_content">
-            {% for _ in range(10) %}
             <div class="chat">
                 <div class="chat_info">
                     <span class="nickname">Jhone</span>
                     <span class="chat_date">01/13/2021</span>
                 </div>
-                <p class="text">Hello</p>
+                <img width="300" src="{{ url_for('static', filename='image/sunflower.jpg') }}">
             </div>
+            <div class="chat">
+                <div class="chat_info">
+                    <span class="nickname">Jhone</span>
+                    <span class="chat_date">01/13/2021</span>
+                </div>
+                <video controls width="300">
+                    <source src="{{ url_for('static', filename='video/star.mp4') }}" type="video/mp4">
+                </video>
+            </div>
+            {% for _ in range(3) %}
+                <div class="chat">
+                    <div class="chat_info">
+                        <span class="nickname">Jhone</span>
+                        <span class="chat_date">01/13/2021</span>
+                    </div>
+                    <p class="text">Hello</p>
+                </div>
             {% endfor %}
         </div>
         <div id="channel_main_footer">
