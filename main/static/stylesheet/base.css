@@ -10,6 +10,7 @@ body {
   background: #333333;}
 h1 { margin: 0; }
 a {
+  color: #ffffff;
   outline: none;
   text-decoration: none;}
 ul {
@@ -63,8 +64,35 @@ header {
   margin: 10px;
   font-size: 14px;
   color: #ffffff;}
-
-
+#header_menu { position: relative; }
+#drop_down_menu {
+  height: 36px;
+  width: 44px;
+  z-index: 1;
+  background: #222222;
+  position: absolute;
+  right: 20px;
+  bottom: 12px;}
+#drop_down_menu .fa-bars {
+  line-height: 36px;
+  font-size: 25px;
+  cursor: normal;}
+#menu_list {
+  position: relative;
+  display: none;}
+.drop_down_link {
+  position: absolute;
+  left: -30px;
+  display: flex;
+  background: #222222;
+  font-size: 14px;
+  padding: 6px 8px;
+  width: 105px;}
+#settings_link { top: 28px; }
+.drop_down_link i{ margin-right: 5px; }
+#drop_down_menu:hover > #menu_list {
+  display: block;
+}
 
 /* Auth */
 #auth {
@@ -84,8 +112,9 @@ header {
   align-items: center;
   justify-content: space-around;
   color: #ffffff;
-  background: #333333;
-  border-radius: 10px;}
+  border-radius: 10px;
+  background-image: url(http://static.simpledesktops.com/uploads/desktops/2012/11/27/heart.png);
+  background-size: contain;}
 #entry_desc {
   margin: 0 0 30px;}
 #entry_title {
@@ -155,7 +184,8 @@ header {
   align-items: center;
   font-size: 18px;
   font-weight: normal;
-  color: #ffffff;}
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;}
 #channel_list {
   padding-left: 10px;}
 #channel_list li {
@@ -186,7 +216,7 @@ header {
 #channel_name {
   padding: 0 10px;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 14px;}
 #search_bar {
   height: 30px;
@@ -197,7 +227,7 @@ header {
   border-radius: 3px;
   font-weight: normal;
   background: #333333;
-  color: #555555;}
+  color: #ffffff;}
 /* Top > Channel Main > Content */
 #channel_main_content {
   height: 100%;
@@ -212,6 +242,27 @@ header {
   font-weight: normal;
   font-size: 12px;
   color: #999999;}
+.img_container {
+  height: 200px;
+  width: 300px;
+  position: relative;
+}
+.img_container img {
+  position: absolute;
+}
+.icon_block {
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+  z-index: -1;}
+.icon_block i {
+  background: #333333;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-right: 5px;}
+.img_container img:hover + .icon_block { z-index: 0; }
+
 /* Top > Channel Main > Footer */
 #channel_main_footer {
   height: 80px;
@@ -239,7 +290,8 @@ header {
   min-height: 301px;
   min-width: 701px;
   display: flex;
-  background: #444444;}
+  background: #444444;
+  background-image: none;}
 
 
 
@@ -262,9 +314,9 @@ header {
   background: #333333;
   border-radius: 10px;}
 #added_member_list {
-  height: 80px;
+  height: 100px;
   width: 230px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   overflow: scroll;}
 .added_member_info {
@@ -279,7 +331,16 @@ header {
   background: #555555;}
 .fa-times {
   cursor: pointer;}
-
+#all_clear {
+  clear: left;
+  width: fit-content;
+  padding: 8px 22px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background: #555555;
+  cursor: pointer;}
+#all_clear:hover {
+  background: #666666;}
 
 
 /* Search Chennel */
