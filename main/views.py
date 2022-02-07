@@ -17,6 +17,11 @@ def add_channel():
 def search():
     return render_template('search.html', type='in')
 
+# Settings
+@app.route('/config')
+def config():
+    return render_template('config.html', type='in')
+
 # Profile
 @app.route('/profile')
 def profile():
