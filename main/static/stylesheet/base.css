@@ -24,6 +24,7 @@ ol {
   margin: 0;
   padding: 0;
   list-style: none;}
+tbody { font-weight: 300; }
 
 
 
@@ -114,8 +115,7 @@ header {
   justify-content: space-around;
   color: #ffffff;
   border-radius: 10px;
-  background-image: url(http://static.simpledesktops.com/uploads/desktops/2012/11/27/heart.png);
-  background-size: contain;}
+  background: #333333;}
 #entry_desc {
   margin: 0 0 30px;}
 #entry_title {
@@ -409,3 +409,43 @@ header {
   padding: 12px 0 0 50px;}
 #settings_wrapper ol li {
   margin-bottom: 10px;}
+
+
+
+/* Admin */
+.alert {
+  padding: 0.5rem 1rem;
+  font-size: 15px;}
+.alert-dismissible .btn-close { padding: 0.75rem 1rem; }
+#admin_wrapper {
+  height: calc(100% - 56px);
+  border-top: solid 1px #333333;
+  overflow: scroll;}
+#table_frame {
+  height: 680px;
+  width: 80%;
+  min-width: 510px;
+  margin: 25px auto;
+  padding: 50px 50px 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #212529;}
+#table_wrapper{
+  height: 100%;
+  overflow: scroll;}
+#user_list_tb { font-size: 13px; }
+
+/* Admin > User Form  */
+#admin_form_wrapper {
+  width: 60%;
+  margin: 50px auto;
+  padding: 60px 0;
+  border-radius: 10px;
+  background: #212529;}
+#add_user_form {
+  width: 60%;
+  margin: auto;}
+.error_message {
+  float: right;
+  font-size: 14px;
+  color: #ff5555;}
