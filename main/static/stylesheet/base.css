@@ -30,14 +30,22 @@ tbody { font-weight: 300; }
 
 /* Form */
 .form_title {
-  font-size: 20px;}
-.label_input {
+  font-weight: 300;
   font-size: 18px;
+  padding: 5px 15px;
+  background: #292929;
+  border-radius: 10px 0px 0px;
+  position: absolute;
+  top: 0;
+  left: 0;}
+.label_input {
+  font-size: 16px;
   font-weight: normal;}
 .input_text {
+  width: 100%;
   margin: 5px 0 20px;
   background: #444444;
-  padding: 10px 15px;
+  padding: 8px 15px;
   border-radius: 5px;
   font-size: 16px;
   color: #ffffff;}
@@ -51,6 +59,26 @@ tbody { font-weight: 300; }
   color: #ffffff;
   background: #555555;}
 .submit:hover { background: #666666; }
+.error_message {
+  float: right;
+  font-size: 14px;
+  color: #ff5555;}
+#user_form {
+  height: 500px;
+  width: 770px;
+  padding: 40px 180px;
+  margin: 50px auto;
+  border-radius: 10px;
+  background: #333333;
+  color: #ffffff;
+  position: relative;}
+#admin_user_form {
+  height: 500px;
+  width: 770px;
+  padding: 40px 180px;
+  margin: 50px auto;
+  border-radius: 10px;
+  color: #ffffff;}
 
 
 
@@ -100,14 +128,14 @@ header {
 #auth {
   height: calc(100% - 83px);
   min-height: 301px;
-  min-width: 701px;
+  min-width: 771px;
   display: flex;
   background: #444444;}
 
 /* Entry */
 .entry {
-  height: 300px;
-  width: 700px;
+  height: 430px;
+  width: 770px;
   padding: 25px;
   margin: auto;
   display: flex;
@@ -419,33 +447,18 @@ header {
 .alert-dismissible .btn-close { padding: 0.75rem 1rem; }
 #admin_wrapper {
   height: calc(100% - 56px);
-  border-top: solid 1px #333333;
-  overflow: scroll;}
+  border-top: solid 1px #333333;}
 #table_frame {
-  height: 680px;
+  height: 650px;
   width: 80%;
   min-width: 510px;
   margin: 25px auto;
   padding: 50px 50px 40px;
   border-radius: 10px;
   font-size: 15px;
-  background: #212529;}
+  background: #212529;
+  overflow: scroll;}
 #table_wrapper{
   height: 100%;
   overflow: scroll;}
 #user_list_tb { font-size: 13px; }
-
-/* Admin > User Form  */
-#admin_form_wrapper {
-  width: 60%;
-  margin: 50px auto;
-  padding: 60px 0;
-  border-radius: 10px;
-  background: #212529;}
-#add_user_form {
-  width: 60%;
-  margin: auto;}
-.error_message {
-  float: right;
-  font-size: 14px;
-  color: #ff5555;}

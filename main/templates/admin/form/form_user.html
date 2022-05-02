@@ -1,0 +1,28 @@
+<form method="POST" class="bg-dark" id="user_form" novalidate>
+{{ form.hidden_tag() }}
+
+{{ form.name.label(class="form-label text-white") }}
+<span class="error_message" id="error_name" data-error="{{form.is_valid('name')}}">
+    {{form.name.errors[0]}}</span>
+{{ form.name(class="form-control") }}
+<br>
+
+{{ form.email.label(class="form-label text-white") }}
+<span class="error_message" id="error_email" data-error="{{form.is_valid('email')}}">
+    {{form.email.errors[0]}}</span>
+{{ form.email(class="form-control") }}
+<br>
+
+{{ form.password.label(class="form-label text-white") }}
+<span class="error_message" id="error_password" data-error="{{form.is_valid('password')}}">
+    {{form.password.errors[0]}}</span>
+{{ form.password(class="form-control") }}
+<br>
+
+{{ form.confirm.label(class="form-label text-white") }}
+{{ form.confirm(class="form-control") }}
+<br>
+
+{{ form.submit(
+    class="btn btn-secondary") }}
+</form>

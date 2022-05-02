@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+    {% if title != 'LOG BASE' %} {{ super() }} {% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+    {% include 'app/component/header.html' %}
+
+    {% if 'user_name' in session %}
+        
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <div id="content">
+            {% include 'app/component/sidebar.html' %}
+
+            <div id="main">
+                {% if type == 'top' %}
+                    {% include 'app/top.html' %}
+
+                {% elif type == 'add_channel' %}
+                    {% include 'app/form/form_channel.html' %}
+
+                {% elif type == 'search' %}
+                    {% include 'app/form/form_search.html' %}
+
+                {% elif type == 'config' %}
+                    {% include 'app/form/form_config.html' %}
+
+                {% elif type == 'profile' %}
+                    <div id="profile">
+                        {% include 'app/form/form_user.html' %}
+                    </div>
+
+                {% endif %}
+            </div>
+
+        </div>
+
+    {% else %}
+
+    <div id="auth">
+        {% if type == 'entry' %}
+            {% include 'app/entry.html' %}
+
+        {% elif type == 'signup' %}
+            {% include 'app/form/form_user.html' %}
+
+        {% elif type == 'login' %}
+            {% include 'app/form/form_user_login.html' %}
+
+        {% endif %}
+    </div>
+
+    {% endif %}
+
+{% endblock %}

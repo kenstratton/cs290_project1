@@ -1,0 +1,27 @@
+<header>
+    <h1><a id="home_link" href="/">LOG BASE</a></h1>
+    <div id="header_menu">
+        {% if 'user_name' in session %}
+            <a class="auth_link" href="logout">LOG OUT</a>
+            <span>/</span>
+            <a class="auth_link" href="profile">PROFILE</a>
+            <div id="drop_down_menu">
+                <i class="fas fa-bars"></i>
+                <div id="menu_list">
+                    <a id="profile_link" class="drop_down_link" href="profile">
+                        <i class="fas fa-user"></i>
+                        PROFILE
+                    </a>
+                    <a id="settings_link" class="drop_down_link" href="config">
+                        <i class="fas fa-cog"></i>
+                        SETTINGS
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <a class="auth_link" href="login">LOG IN</a>
+            <span>/</span>
+            <a class="auth_link" href="signup">SIGN UP</a>
+        {% endif %}
+    </div>
+</header>

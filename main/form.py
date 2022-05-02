@@ -28,30 +28,41 @@ class ValidateEqual(EqualTo):
             message=f"*Must match the {target} field.")
 
 
+
 # Form classes
-class UserForm(FlaskForm):
-    name = StringField("Nickname",[
+class Form(FlaskForm):
+    submit = SubmitField('Submit')
+
+    def is_valid(self, target):
+        result = 0
+        if  (self[target].errors):
+                result = 1
+        return result
+
+
+class UserForm(Form):
+    name = StringField("Nickname", [
         ValidateRequired('Nickname'),
         ValidateLength(3, 100)])
 
-    email = EmailField("Email",[
+    email = EmailField("Email", [
         ValidateRequired('Email'),
         ValidateLength(3, 120),
         ValidateEmail()])
 
-    password = PasswordField("Password",[
+    password = PasswordField("Password", [
         ValidateRequired('Password'),
         ValidateLength(8, 100),
         ValidateEqual('confirm')])
 
     confirm  = PasswordField("Confirm Password")
 
-    submit = SubmitField('Submit')
 
-    def is_valid(self, target):
-        result = 0
-        if  (target =='name' and self.name.errors) or \
-            (target =='email' and self.email.errors) or \
-            (target =='password' and self.password.errors):
-                result = 1
-        return result
+class UserLoginForm(Form):
+    name = StringField("Nickname", [
+        ValidateRequired('Nickname'),
+        ValidateLength(3, 100)])
+
+    password = PasswordField('Password', [
+        ValidateRequired('Password'),
+        ValidateLength(3, 100)])

@@ -9,60 +9,11 @@
         crossorigin="anonymous">
         <link rel="stylesheet" href="{{ url_for('static',
         filename='stylesheet/base.css') }}" media="screen">
-        <title>LOG BASE - {% block title %}{% endblock %}</title>
+        <title>{% block title %} ー LOG BASE {% endblock %}</title>
     </head>
     <body>
-    {% if type == 'admin' %}
-        {% include 'navbar.html' %}
-        <div id="admin_wrapper">{% block admin %}{% endblock %}</div>
-    {% else %}
-        <header>
-            <h1><a id="home_link" href="/">LOG BASE</a></h1>
-            <div id="header_menu">
-                {% if type == "in" %}
-                    <a class="auth_link" id="" href="entry">LOG OUT</a>
-                    <span>/</span>
-                    <a class="auth_link" id="" href="profile">PROFILE</a>
-                    <div id="drop_down_menu">
-                        <i class="fas fa-bars"></i>
-                        <div id="menu_list">
-                            <a id="profile_link" class="drop_down_link" href="profile">
-                                <i class="fas fa-user"></i>
-                                PROFILE
-                            </a>
-                            <a id="settings_link" class="drop_down_link" href="config">
-                                <i class="fas fa-cog"></i>
-                                SETTINGS
-                            </a>
-                        </div>
-                    </div>
-                {% else %}
-                    <a class="auth_link" id="" href="login">LOG IN</a>
-                    <span>/</span>
-                    <a class="auth_link" id="" href="signup">SIGN UP</a>
-                {% endif %}
-            </div>
-        </header>
-        {% if type == "in" %}
-            <div id="content">
-                <div id="side">
-                    <a class="side_link" id="side_add_link" href="add_channel">
-                        <i class="fas fa-plus"></i></a>
-                    <a class="side_link" id="side_search_link" href="search">
-                        <i class="fas fa-search-plus"></i></a>
-                    <a class="side_link" id="side_help_link" href="/">
-                        <i class="fas fa-question"></i></a>
-                </div>
-                <div id="main">
-                    {% block content %}{% endblock %}
-                </div>
-            </div>
-        {% else %}
-            <div id="auth">
-                {% block auth %}{% endblock %}
-            </div>
-        {% endif %}
-    {% endif %}
+
+    {% block content %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
