@@ -2,10 +2,10 @@
     <span class="form_title"># {{title}}</span>
     {{ form.hidden_tag() }}
 
-    {{ form.name.label(class="label_input") }}
-    <span class="error_message" id="error_name" data-error="{{form.is_valid('name')}}">
-        {{form.name.errors[0]}}</span>
-    {{ form.name(class="input_text", placeholder="Nickname") }}
+    {{ form.name_or_email.label(class="label_input") }}
+    <span class="error_message" id="error_name" data-error="{{form.is_valid('name_or_email')}}">
+        {{form.name_or_email.errors[0]}}</span>
+    {{ form.name_or_email(class="input_text", placeholder="Nickname / email@address.com") }}
     <br>
 
     {{ form.password.label(class="label_input") }}
@@ -14,5 +14,5 @@
     {{ form.password(class="input_text", placeholder="Password") }}
     <br>
 
-    <input class="submit" type="submit" value="Submit">
+    {{ form.submit(class='submit') }}
 </form>

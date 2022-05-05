@@ -1,4 +1,4 @@
-* { box-sizing: border-box; }
+* { box-sizing: border-box; color: #ffffff;}
 html {
   min-width: 600px;
   font-family: "Helvetica Neue"; 
@@ -11,7 +11,9 @@ h1 { margin: 0; }
 a {
   color: #ffffff;
   outline: none;
-  text-decoration: none;}
+  text-decoration: none;
+  cursor: pointer;}
+a:hover { color: #cccccc; }
 ul { list-style-type: none }
 p { margin: 0; }
 input {
@@ -26,6 +28,17 @@ ol {
   list-style: none;}
 tbody { font-weight: 300; }
 
+
+/* Error pages */
+.page_error_text {
+  width: fit-content;
+  margin: auto;}
+
+
+/* Maintenance page */
+.maintenance_text {
+  width: fit-content;
+  margin: auto;}
 
 
 /* Form */
@@ -47,8 +60,7 @@ tbody { font-weight: 300; }
   background: #444444;
   padding: 8px 15px;
   border-radius: 5px;
-  font-size: 16px;
-  color: #ffffff;}
+  font-size: 16px;}
 .submit {
   height: 40px;
   width: 100px;
@@ -56,7 +68,6 @@ tbody { font-weight: 300; }
   margin-top: 20px;
   font-size: 14px;
   font-weight: normal;
-  color: #ffffff;
   background: #555555;}
 .submit:hover { background: #666666; }
 .error_message {
@@ -70,15 +81,13 @@ tbody { font-weight: 300; }
   margin: 50px auto;
   border-radius: 10px;
   background: #333333;
-  color: #ffffff;
   position: relative;}
 #admin_user_form {
   height: 500px;
   width: 770px;
   padding: 40px 180px;
   margin: 50px auto;
-  border-radius: 10px;
-  color: #ffffff;}
+  border-radius: 10px;}
 
 
 
@@ -87,15 +96,11 @@ header {
   width: 100%;
   padding: 13px;
   text-align: center;
-  color: #ffffff;
   background: #333333;}
-#home_link {
-  font-weight: 100;
-  color: #ffffff;}
+#home_link { font-weight: 100; }
 .auth_link {
   margin: 10px;
-  font-size: 14px;
-  color: #ffffff;}
+  font-size: 14px;}
 #header_menu { position: relative; }
 #drop_down_menu {
   height: 36px;
@@ -141,7 +146,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  color: #ffffff;
   border-radius: 10px;
   background: #333333;}
 #entry_desc {
@@ -190,9 +194,7 @@ header {
   margin-bottom: 20px;
   text-align: center;
   background: #444444;}
-.side_link i {
-  line-height: 60px;
-  color: #ffffff;}
+.side_link i { line-height: 60px; }
 
 
 /* Content > Main */
@@ -207,8 +209,7 @@ header {
   display: flex;
   position: absolute;
   padding: 10px 20px;
-  font-size: 15px;
-  color: #ffffff;}
+  font-size: 15px;}
 .breadcrumb li:after {
   content: '>';
   padding: 0 8px 0 5px;}
@@ -226,15 +227,12 @@ header {
   align-items: center;
   font-size: 18px;
   font-weight: normal;
-  color: #ffffff;
   -webkit-font-smoothing: antialiased;}
 #channel_list {
   padding-left: 10px;}
 #channel_list li {
   margin-bottom: 5px;}
-.channel_link {
-  font-size: 14px;
-  color: #ffffff;}
+.channel_link { font-size: 14px; }
 #marked { font-weight: normal; }
 
 /* Top > Chanel Main */
@@ -256,7 +254,6 @@ header {
   background: #555555;}
 #channel_name {
   padding: 0 10px;
-  color: #ffffff;
   font-weight: normal;
   font-size: 14px;}
 #search_bar {
@@ -267,16 +264,13 @@ header {
   padding: 0 10px;
   border-radius: 3px;
   font-weight: normal;
-  background: #333333;
-  color: #ffffff;}
+  background: #333333;}
 /* Top > Channel Main > Content */
 #channel_main_content {
   height: 100%;
   padding: 50px 0 80px 0;
   overflow: scroll;}
-.chat {
-  padding: 20px;
-  color: #ffffff;}
+.chat { padding: 20px; }
 .nickname { font-weight: normal; }
 .chat_date {
   font-weight: normal;
@@ -325,11 +319,46 @@ header {
 /* Peofile */
 #profile {
   width: 100%;
-  min-height: 301px;
+  /* min-height: 301px; */
   min-width: 701px;
   display: flex;
   background: #444444;
   background-image: none;}
+#profile_wrapper {
+  width: 700px;
+  margin: auto;
+  padding: 35px 0 55px;
+  background: #333333;
+  border-radius: 10px;}
+#profile_title {
+  font-weight: 300;
+  padding: 0 30px;}
+.profile_link_field {
+  padding: 35px 30px 0;
+  border: solid #333333;
+  border-width: 0 1px 0 1px;
+  display: block;
+  position: relative;}
+.profile_link_field i {
+  font-size: 18px;
+  position: absolute;
+  top: 39px;
+  right: 48px;}
+.profile_link_field:hover { background: #393939; }
+.profile_type { font-weight: 200; }
+.profile_info_wrapper {
+  display: flex;
+  padding: 16px 0 10px 50px;
+  border-bottom: 1px solid #555555;}
+.profile_info_title {
+  font-weight: 100;
+  font-size: 14px;
+  flex-basis: 270px;}
+.profile_info {
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 21px;}
+#profile_password_txt { font-size: 12px; }
 
 
 
@@ -348,7 +377,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  color: #ffffff;
   background: #333333;
   border-radius: 10px;}
 #added_member_list {
@@ -393,7 +421,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  color: #ffffff;
   background: #333333;
   border-radius: 10px;}
 #search_block {
@@ -427,7 +454,6 @@ header {
   width: 700px;
   padding: 55px 0 0 70px;
   margin: auto;
-  color: #ffffff;
   background: #333333;
   border-radius: 10px;}
 #settings_wrapper span {
