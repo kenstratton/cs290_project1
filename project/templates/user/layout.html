@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block layout %}
+    {% include 'user/component/menu/header.html' %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    <div class='user_content'>
+        {% block content %}{% endblock %}
+
+        <!-- bootstrapのjs確認 -->
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+               カードのレイアウトを表示
+            </div>
+        </div>
+
+    </div>
+<!-- 
+    <div id="content"></div>
+
+    <div id="profile">
+    </div>
+
+    <div id="auth"></div> -->
+{% endblock %}

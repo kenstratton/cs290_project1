@@ -1,0 +1,32 @@
+<div id="table_frame">
+    <div id="table_wrapper">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created Date</th>
+                </tr>
+            </thead>
+            <div class="hey"></div>
+            <tbody id="user_list_tb">
+                {% for user in users %}
+                <tr>
+                    <td scope="row">{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.date_added.strftime('%Y/%m/%d %H:%M')}}</td>
+                    <td>
+                        {% if user.admin == true %}
+                        <span>administrator</span>
+                        {% else %}
+                        <a href="{{ url_for('admin.delete_user', id=user.id)}}">delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

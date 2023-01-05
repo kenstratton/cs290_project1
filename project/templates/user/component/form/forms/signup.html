@@ -1,0 +1,18 @@
+<form method="POST" id="user_form" novalidate>
+    <span class="form_title"># {{title}}</span>
+    {{ form.hidden_tag() }}
+
+    {% include 'user/component/form/input/name.html' %}
+    <br>
+
+    {% include 'user/component/form/input/email.html' %}
+    <br>
+
+    {% include 'user/component/form/input/password.html' %}
+    <br>
+
+    {% include 'user/component/form/input/password_conf.html' %}
+    <br>
+
+    {% include 'user/component/form/input/submit.html' %}
+</form>

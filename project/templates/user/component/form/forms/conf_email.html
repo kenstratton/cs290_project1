@@ -1,0 +1,12 @@
+<form method="POST" id="user_form" novalidate>
+    <span class="form_title"># {{title}}</span>
+    {{ form.hidden_tag() }}
+
+    {{ form.email.label(class="label_input") }}
+    <span class="error_msg" id="error_name" data-error="{{form.is_valid('email')}}">
+        {{form.email.errors[0]}}</span>
+    {{ form.email(class="input_text", placeholder="email@address.com") }}
+    <br>
+
+    {{ form.submit(class='submit') }}
+</form>

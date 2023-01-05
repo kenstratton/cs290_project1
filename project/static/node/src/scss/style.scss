@@ -1,0 +1,18 @@
+// BootstrapのCSSをすべてインポート(~bootstrapはwebpack記法)
+// @import "~bootstrap/scss/bootstrap.scss";
+
+// $color: #ff0000;
+$color: blue;
+$weight: bold;
+
+body {
+  color: $color;
+  font-weight: $weight;
+  user-select: none;
+  display: grid;
+  // background-image: url("../../../image/Space.png");
+}
+
+.bg {
+  background-image: linear-gradient(to bottom, #8BCC8E 0%, #A7F5AB 100%);
+}

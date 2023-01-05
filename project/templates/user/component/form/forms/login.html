@@ -1,0 +1,21 @@
+<form method="POST" id="user_form" novalidate>
+    <span class="form_title"># {{title}}</span>
+    {{ form.hidden_tag() }}
+
+    {{ form.pl_info.label(class="label_input") }}
+    <span class="error_msg" id="error_name" data-error="{{form.is_valid('pl_info')}}">
+        {{form.pl_info.errors[0]}}</span>
+    {{ form.pl_info(class="input_text", placeholder="Nickname / email@address.com") }}
+    <br>
+
+    {{ form.psw.label(class="label_input") }}
+    <span class="error_msg" id="error_psw" data-error="{{form.is_valid('psw')}}">
+        {{form.psw.errors[0]}}</span>
+    {{ form.psw(class="input_text", placeholder="Password") }}
+    <br>
+
+    <a href="{{ url_for('user.forgot_password') }}">Forgot password ?</a>
+    <br>
+
+    {{ form.submit(class='submit') }}
+</form>

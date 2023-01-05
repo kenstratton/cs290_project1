@@ -1,0 +1,7 @@
+@mixin white {
+  color: #ffffff;
+}
+
+.btn-outline-secondary {
+  @include white;
+}

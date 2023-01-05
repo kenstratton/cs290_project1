@@ -1,0 +1,29 @@
+{% extends 'user/layout.html' %}
+
+{% block content %}
+
+<div id="profile_wrapper">
+    <h3 id="profile_title">Personal info</h3>
+    <a class="profile_link_field" href="{{ url_for('user.basic_info') }}">
+        <h5 class="profile_type">Basic info</h5>
+        <div class="profile_info_wrapper">
+            <span class="profile_info_title">Nickname</span>
+            <span class="profile_info">{{ user.name }}</span>
+        </div>
+        <div class="profile_info_wrapper">
+            <span class="profile_info_title">Email</span>
+            <span class="profile_info">{{ user.email }}</span>
+        </div>
+        <i class="fas fa-chevron-right"></i>
+    </a>
+    <a class="profile_link_field" href="{{ url_for('user.password') }}">
+        <h5 class="profile_type">Password</h5>
+        <div class="profile_info_wrapper">
+            <span class="profile_info_title">Last changed 2022/02/19 11:00</span>
+            <span class="profile_info" id='profile_password_txt'>●●●●●●●●</span>
+        </div>
+        <i class="fas fa-chevron-right"></i>
+    </a>
+</div>
+
+{% endblock %}
