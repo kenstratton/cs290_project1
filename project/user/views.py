@@ -5,7 +5,7 @@ from tabnanny import check
 from flask import Blueprint, g, request, session, flash, redirect, render_template, url_for
 from sqlalchemy import or_
 from functools import wraps
-from project import db, assets
+from project import db # , assets
 from project.models.user import User
 from project.form import user_form
 from time import time
@@ -99,7 +99,7 @@ def render_temp(path, title=None, form=None, **kwrgs):
         title=title,
         form=form,
         session=session,
-        assets=assets,
+        # assets=assets,
         **kwrgs
         )
 

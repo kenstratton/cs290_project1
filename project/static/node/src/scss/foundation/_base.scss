@@ -1,0 +1,65 @@
+/*--------
+|  Base  | - default/reset
+--------*/
+* {
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: 600px;
+}
+
+body {
+  height: 100vh;
+  margin: auto;
+  background: #333333;
+  -webkit-font-smoothing: antialiased; 
+  -webkit-text-size-adjust: none;
+}
+
+h1 {
+  margin: 0;
+}
+
+a {
+  color: #ffffff;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #cccccc;
+}
+
+ul {
+  list-style-type: none
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+tbody {
+  font-weight: 300;
+}

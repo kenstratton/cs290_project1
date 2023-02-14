@@ -1,0 +1,96 @@
+// // オプションA: Bootstrapを全部組み込む
+// // デフォルトの変数の再定義（関数は使用不可）
+
+// // BootstrapのCSSをすべてインポート(~bootstrapはwebpack記法)
+@import "~bootstrap/scss/bootstrap.scss";
+
+// // カスタムの設定
+
+
+
+// // オプションB: Bootstrapを部分的に組み込む
+// // @import "~bootstrap/scss/";
+
+// // 関数（カラー、SVG、計算などが操作できるように）
+// @import "~bootstrap/scss/functions";
+
+// // デフォルトの変数の再定義
+// $body-bg: #ffffff;
+
+// // 必須のBootstrapスタイルシート（個別のカラーモードスタイルシートなど）
+// @import "~bootstrap/scss/variables";
+// // @import "~bootstrap/scss/variables-dark";
+
+// // デフォルトのマップの再定義
+
+// // 必須
+// @import "~bootstrap/scss/mixins/banner";
+// @include bsBanner("");
+// @import "~bootstrap/scss/maps";
+// @import "~bootstrap/scss/mixins";
+// @import "~bootstrap/scss/root";
+
+// // オプションのBootstrapコンポーネント
+// @import "~bootstrap/scss/utilities";
+// @import "~bootstrap/scss/reboot";
+// @import "~bootstrap/scss/type";
+// @import "~bootstrap/scss/images";
+// @import "~bootstrap/scss/containers";
+// @import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/helpers";
+
+// // ユーティリティAPIを組み込んで、_utilities.scssのSassマップに基づいてクラスを生成
+// @import "~bootstrap/scss/utilities/api";
+
+// // カスタムの設定
+
+
+
+
+// // @import "mixins/banner";
+// // @include bsBanner("");
+
+// //* scss-docs-start import-stack
+// //* Configuration
+// // @import "functions";
+// // @import "variables";
+// // @import "maps";
+// // @import "mixins";
+// // @import "utilities";
+
+// //* Layout & components
+// // @import "root";
+// // @import "reboot";
+// // @import "type";
+// // @import "images";
+// // @import "containers";
+// // @import "grid";
+// // @import "tables";
+// // @import "forms";
+// @import "~bootstrap/scss/buttons";
+// // @import "transitions";
+// // @import "dropdown";
+// @import "~bootstrap/scss/button-group";
+// // @import "nav";
+// // @import "navbar";
+// // @import "card";
+// // @import "accordion";
+// // @import "breadcrumb";
+// // @import "pagination";
+// // @import "badge";
+// // @import "alert";
+// // @import "progress";
+// // @import "list-group";
+// // @import "close";
+// // @import "toasts";
+// @import "~bootstrap/scss/modal";
+// @import "~bootstrap/scss/tooltip";
+// // @import "popover";
+// // @import "carousel";
+// // @import "spinners";
+// // @import "offcanvas";
+// // @import "placeholders";
+
+// // @import "helpers";
+
+// // @import "utilities/api";

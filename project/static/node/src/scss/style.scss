@@ -1,18 +1,113 @@
-// BootstrapのCSSをすべてインポート(~bootstrapはwebpack記法)
-// @import "~bootstrap/scss/bootstrap.scss";
+/*  
+▼ Attention
+ - Predictable (予測性)
+
+ - Resusable (再利用性)
+
+ - Sercurable (保守性)
+
+ - Extendable (拡張性)
+
+ - ID is only for JavaScript fooks (CLASS is the alternative)
+
+ - Priority : !important > class > element > *
+
+ - NO emittion (e.g. ○ button -> btn)
+ - OK emittion (e.g. information -> info) * long and easy-to-know words
+
+ - Based on meaning but not look/location (× text-red  ○ text-attention)
+
+ - Apply only necessary styles to element selector (body, a, img)
+
+ - Don't depend on html (× .content > div > div)
+
+ - Don't complicate stylings (× li.item  ○ .item)
+
+
+▼ CSS structure
+ - SMACSS (Scalable and Modular Architecture)
+   - Base : default/reset css (body, a, img)
+   - Layout : header, footer (l-)
+   - Module: reusable components (.button, .title)
+   - State : fooks for js (is-open) 
+   - Theme : theme swicher (.theme-dark)
+
+ - BEMCSS (Block Element Modifier)
+   - Block__Element–-Modifier (up to preference)
+      -> block-element--modifier
+      -> _ for long naming (* block_name)
+   - (e.g.) header-nav__item--contact
+   - contact(modifer) is set to make itself outstanding
+
+Sassを使用している場合は以下のルール
+   ローカル変数を最初に定義します
+   @extendをローカル変数の次に指定します
+   @mixinを@extendの次に指定します
+   @contentを使用している@mixinは最後に指定します
+   .baz {
+    $padding: 1em;
+    @extend %base-unit;
+    @include clearfix;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $padding;
+    padding-left: $padding;
+    @include media-query(md) {
+        padding-right: ($padding * 2);
+        padding-left: ($padding * 2);
+    }
+}
+
+*/
+
+/*-------------------------------------------------------------------
+|  Foundation                                                       |
+-------------------------------------------------------------------*/
+
+$theme-colors: (
+  "primary": #b0c4de
+);
 
 // $color: #ff0000;
 $color: blue;
 $weight: bold;
 
-body {
-  color: $color;
-  font-weight: $weight;
-  user-select: none;
-  display: grid;
-  // background-image: url("../../../image/Space.png");
+// BootstrapのCSSをすべてインポート(~bootstrapはwebpack記法)
+@import "foundation/vendors";
+@import "foundation/base";
+@import "foundation/variable";
+@import "foundation/vendors";
+
+
+/*-------------------------------------------------------------------
+|  Layout                                                           |
+-------------------------------------------------------------------*/
+
+
+
+
+/*-------------------------------------------------------------------
+|  Object                                                           |
+-------------------------------------------------------------------*/
+
+/*  Component  -----------------------------------------*/
+
+/*   Project   -----------------------------------------*/
+
+/*    Theme    -----------------------------------------*/
+
+/*   Utility   -----------------------------------------*/
+
+
+
+
+.media-test {
+  display: none;
 }
 
-.bg {
-  background-image: linear-gradient(to bottom, #8BCC8E 0%, #A7F5AB 100%);
+@include media-breakpoint-down(sm) {
+  .media-test {
+    display: block;
+  }
 }

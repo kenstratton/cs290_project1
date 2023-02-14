@@ -29,17 +29,17 @@ migrate = Migrate(app, db)
 
 # Assets ----------------------------------------------
 
-from flask_assets import Environment, Bundle
-assets = Environment(app)
-assets.url = app.static_url_path
-bundles = {
-    'main_scss': Bundle(
-        'scss/sample.scss',
-        filters='libsass',
-        output='main.css'
-    )
-}
-assets.register(bundles)
+# from flask_assets import Environment, Bundle
+# assets = Environment(app)
+# assets.url = app.static_url_path
+# bundles = {
+#     'main_scss': Bundle(
+#         'scss/sample.scss',
+#         filters='libsass',
+#         output='main.css'
+#     )
+# }
+# assets.register(bundles)
 
 
 

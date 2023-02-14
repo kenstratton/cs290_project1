@@ -4,37 +4,42 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-dev": "webpack --mode development --watch",
+    "build-prod": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-declaration-sorter": "^6.3.1",
     "css-loader": "^6.7.2",
+    "cssnano": "^5.1.14",
+    "i": "^0.3.7",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1",
+    "imagemin-webpack-plugin": "^2.4.2",
     "mini-css-extract-plugin": "^2.7.2",
-    "node-sass": "^8.0.0",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "postcss": "^8.4.20",
     "postcss-loader": "^7.0.2",
+    "postcss-preset-env": "^7.8.3",
+    "sass": "^1.58.0",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "chart.js": "^2.9.4"
   },
-  "browserslist": [
-    "> 0.5%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "__comment" : {
-    "// scripts": "",
-    "// browserslist": "世界で1%以上のシェア, 各ブラウザ最後の2バージョン, 24ヶ月以内にメンテされた",
-    "// ":""
+  "// comment": {
+    "// browserslist": "世界で1%以上のシェア, 各ブラウザ最後の2バージョン, 24ヶ月以内にメンテされた"
   }
-
 }

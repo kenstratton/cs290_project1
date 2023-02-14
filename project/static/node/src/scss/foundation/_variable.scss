@@ -1,0 +1,10 @@
+
+
+
+// メディアクエリ時に使用するブレークポイント
+$breakpoint: (
+  sp: 'screen and (max-width: 767px)',
+  tab: 'screen and (min-width: 768px)',
+  pc: 'screen and (min-width: 1025px)'
+);
+
