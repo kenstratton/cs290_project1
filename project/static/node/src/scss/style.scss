@@ -59,32 +59,35 @@ Sassを使用している場合は以下のルール
     }
 }
 
+▼ プロパティ宣言順
+mixin
+ボックスモデルの種類や表示方法を示すプロパティ（box-sizing, display, visibility, floatなど）
+位置情報に関するプロパティ（position, z-indexなど）
+ボックスモデルのサイズに関するプロパティ（width, height, margin, padding, borderなど）
+フォント関連のプロパティ（font-size, line-heightなど）
+色に関するプロパティ（color, background-colorなど）
+それ以外
+@contentを使用している@mixin
 */
 
 /*-------------------------------------------------------------------
 |  Foundation                                                       |
 -------------------------------------------------------------------*/
 
-$theme-colors: (
-  "primary": #b0c4de
-);
-
-// $color: #ff0000;
-$color: blue;
-$weight: bold;
-
-// BootstrapのCSSをすべてインポート(~bootstrapはwebpack記法)
 @import "foundation/vendors";
-@import "foundation/base";
 @import "foundation/variable";
-@import "foundation/vendors";
+@import "foundation/mixin";
+@import "foundation/base";
 
 
 /*-------------------------------------------------------------------
 |  Layout                                                           |
 -------------------------------------------------------------------*/
 
-
+@import "layout/header";
+@import "layout/main";
+@import "layout/footer";
+@import "layout/sidebar";
 
 
 /*-------------------------------------------------------------------

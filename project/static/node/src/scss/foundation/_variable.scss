@@ -1,10 +1,95 @@
+/*
+ボックスモデルの種類や表示方法を示すプロパティ（box-sizing, display, visibility, floatなど）
+位置情報に関するプロパティ（position, z-indexなど）
+ボックスモデルのサイズに関するプロパティ（width, height, margin, padding, borderなど）
+フォント関連のプロパティ（font-size, line-heightなど）
+色に関するプロパティ（color, background-colorなど）
+それ以外
+*/
+
+/** #Index ... 各項目に # を付けて検索できます
+ * 
+ * MediaQuery..........メディアクエリ時に使用する変数
+ * Color...............プロジェクト内で使用される色の変数
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
 
+
+/*  #MediaQuery  ---------------------------------------------*/
 
 // メディアクエリ時に使用するブレークポイント
 $breakpoint: (
   sp: 'screen and (max-width: 767px)',
   tab: 'screen and (min-width: 768px)',
   pc: 'screen and (min-width: 1025px)'
-);
+) !default;
 
+
+
+/*  #Color  ---------------------------------------------*/
+
+// 各色の変数
+$blue:    #0d6efd !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #198754 !default;
+$teal:    #20c997 !default;
+$cyan:    #0dcaf0 !default;
+$white:   #fff !default;
+$black:   #111!default;
+
+$gray-l:     #bbb !default;
+$gray-md-l:  #999 !default;
+$gray-md:    #777 !default;
+$gray-md-h:  #555 !default;
+$gray-h:     #333 !default;
+$gray: (
+  l: $gray-l,
+  md-l: $gray-md-l,
+  md: $gray-md,
+  md-h: $gray-md-h,
+  h: $gray-h,
+) !default;
+
+// フォントの色
+$font-colors: (
+  "header":     $white,
+  "error":      $red,
+  "f":       $blue,
+  "ff":       $pink,
+) !default;
+
+// 背景の色
+$bg-colors: (
+  "primary": map-get($gray, h),
+  "secondary": map-get($gray, md),
+  "tertiary": map-get($gray, l)
+) !default;
+
+// ボタンの色
+$btn-colors: (
+  "primary": #337AB7,
+  "secondary": #5CB85C,
+  "tertiary": #F0AD4E
+) !default;
+
+@each $key, $value in $btn-colors {
+  .btn-#{$key} {
+    background-color: $value;
+  }
+}
+// .p-alert--success
