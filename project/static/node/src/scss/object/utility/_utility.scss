@@ -1,0 +1,11 @@
+.u-dn-sp {
+ @include mq(sp) {
+   display: none;
+ }
+}
+
+.u-dn-pc {
+ @include mq(pc) {
+   display: none;
+ }
+}

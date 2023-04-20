@@ -1,6 +1,11 @@
 // メディアクエリ
+$breakpoints: (
+  sp:    'screen and (max-width: 767px)',
+  tab:   'screen and (min-width: 768px) and ( max-width:1024px)',
+  pc:    'screen and (min-width: 1025px)'
+);
 @mixin mq($bp) {
-  @media #{map-get($breakpoint, $bp)} {
+  @media #{map-get($breakpoints, $bp)} {
     @content;
   }
 }

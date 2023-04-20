@@ -1,0 +1,16 @@
+.c-flex-wrapper { display: flex; }
+
+.c-flex-wrapper--center {
+  display: flex;
+  align-items: center;
+}
+
+.c-flex-wrapper--column {
+  display: flex;
+  flex-flow: column;
+}
+
+.c-flex-wrapper--row {
+  display: flex;
+  flex-flow: row;
+}

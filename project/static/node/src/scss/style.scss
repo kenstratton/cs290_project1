@@ -74,8 +74,8 @@ mixin
 |  Foundation                                                       |
 -------------------------------------------------------------------*/
 
-@import "foundation/vendors";
 @import "foundation/variable";
+@import "foundation/vendors";
 @import "foundation/mixin";
 @import "foundation/base";
 
@@ -95,22 +95,11 @@ mixin
 -------------------------------------------------------------------*/
 
 /*  Component  -----------------------------------------*/
+@import "object/component/wrapper";
 
 /*   Project   -----------------------------------------*/
 
 /*    Theme    -----------------------------------------*/
 
 /*   Utility   -----------------------------------------*/
-
-
-
-
-.media-test {
-  display: none;
-}
-
-@include media-breakpoint-down(sm) {
-  .media-test {
-    display: block;
-  }
-}
+@import "object/utility/utility";

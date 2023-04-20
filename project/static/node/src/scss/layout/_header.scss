@@ -10,28 +10,102 @@
 * @contentを使用している@mixin
 */
 
-header {
+// Base
+
+// Layout ワイヤーフレームに定義されるような大きなコンテナブロック(IDセレクタを指定可)
+.top-nav {
+  width: 100%;
+  height: 60px;
+  color: map-get($font-colors, header);
+  background-color: $gray-xh;
+}
+
+.top-nav__container {
+  height: 100%;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  // display: flex;
+}
+
+.top-nav__logo {
+  margin-right: auto;
+}
+
+.top-nav__menu-toggler {
+  
+}
+
+#top-nav__sidebar {
+  width: 300px;
+  height: 100%;
+  background-color: $black;
+}
+
+.top-nave__sidebar__list-item {
+  height: 50px;
+  line-height: 50px;
+}
+
+// Component 再利用できるような小さなモジュール、固有の幅や装飾的なスタイルは極力指定しない
+.flex-wrapper {
   display: flex;
   align-items: center;
+}
+.nav {
   position: fixed;
-  width: 100%;
-  height: 100px;
-  background-color: map-get($bg-colors, primary);
-  // background-color: $gray-h;
+  top: 0;
+  left: 0;
+}
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s 0s ease;
+}
+// .nav-mobile[data-status="on"] {
+//   transform: translateY(0);
+// }
+// .nav-mobile[data-status="off"] {
+//   transform: translateY(-100%);
+// }
+
+
+.nav-menu {
+  display: flex;
 }
 
-p {
-  padding: 130px 0px;
-  height: 500px;
-}
 
-.title {
-  margin-right: auto;
-  color: map-get($font-colors, header);
-}
 
-.menu-item {
+
+
+// Project プロジェクト固有のUI(殆どのスタイルの追加はこのレイヤー)
+
+.list-item {
   display: inline-block;
   list-style: none;
-  padding: 10px;
+  padding: 0 13%;
+}
+
+#top-container {
+  height: calc(100vh);
+  padding-top: 60px;
+}
+#top-container * {
+  color: black;
+}
+
+#second-container {
+  height: calc(100vh);
+  padding-top: 60px;
+}
+#second-container * {
+  color: black;
+}
+
+[class*="hey"] {
+  border: solid 1px;
+}
+.collapser {
+  border: none;
 }

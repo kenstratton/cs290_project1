@@ -8,8 +8,10 @@
 */
 
 /** #Index ... 各項目に # を付けて検索できます
- * 
+  ▼ Bootstrapにて使用される変数の上書き
  * MediaQuery..........メディアクエリ時に使用する変数
+
+  ▼ 自作の変数
  * Color...............プロジェクト内で使用される色の変数
  * 
  * 
@@ -23,46 +25,65 @@
  * 
  * 
  * 
- */
+**/
 
 
+/*-------------------------------------
+|   #Bootstrapにて使用される変数の上書き   |
+-------------------------------------*/
 
 /*  #MediaQuery  ---------------------------------------------*/
 
-// メディアクエリ時に使用するブレークポイント
-$breakpoint: (
-  sp: 'screen and (max-width: 767px)',
-  tab: 'screen and (min-width: 768px)',
-  pc: 'screen and (min-width: 1025px)'
-) !default;
+// bootstrapのgrid機能にて使用
+$grid-breakpoints: (
+  sp:    480px,
+  tab:   768px,
+  pc:    1024px
+);
+
+/*  使用方法   //! 要記載
+htmlでのクラス記載...
+
+row
+row-cols-sp-1
+row-cols-tab-2
+row-cols-pc-4
+
+col
+*/
 
 
+
+
+/*---------------
+|   #自作の変数   |
+---------------*/
 
 /*  #Color  ---------------------------------------------*/
 
 // 各色の変数
-$blue:    #0d6efd !default;
-$pink:    #d63384 !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #198754 !default;
-$teal:    #20c997 !default;
-$cyan:    #0dcaf0 !default;
-$white:   #fff !default;
-$black:   #111!default;
+$blue:     #0d6efd !default;
+$pink:     #d63384 !default;
+$red:      #dc3545 !default;
+$orange:   #fd7e14 !default;
+$yellow:   #ffc107 !default;
+$green:    #198754 !default;
+$teal:     #20c997 !default;
+$cyan:     #0dcaf0 !default;
+$white:    #fff !default;
+$black:    #111!default;
 
-$gray-l:     #bbb !default;
-$gray-md-l:  #999 !default;
-$gray-md:    #777 !default;
-$gray-md-h:  #555 !default;
-$gray-h:     #333 !default;
+$gray-xl:   #bbb !default;
+$gray-l:    #999 !default;
+$gray-md:   #777 !default;
+$gray-h:    #555 !default;
+$gray-xh:   #333 !default;
 $gray: (
+  xl: $gray-xl,
   l: $gray-l,
-  md-l: $gray-md-l,
   md: $gray-md,
-  md-h: $gray-md-h,
   h: $gray-h,
+  xh: $gray-xh,
 ) !default;
 
 // フォントの色
@@ -75,9 +96,9 @@ $font-colors: (
 
 // 背景の色
 $bg-colors: (
-  "primary": map-get($gray, h),
+  "body": map-get($gray, xl),
   "secondary": map-get($gray, md),
-  "tertiary": map-get($gray, l)
+  "tertiary": map-get($gray, xl)
 ) !default;
 
 // ボタンの色
@@ -92,4 +113,3 @@ $btn-colors: (
     background-color: $value;
   }
 }
-// .p-alert--success

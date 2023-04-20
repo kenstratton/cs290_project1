@@ -2,59 +2,75 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>Chart.jsを使ってみる</title>
+	<title>デモページ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="dist/css/main.min.css" media="screen">
-  <script src="dist/js/main.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://kit.fontawesome.com/c39d0aac49.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </head>
 <body>
   <!-- header -->
-  <header>
-    <h1 class="title">Log Base</h1>
-    <nav class="nav">
-      <ul class="menu-group">
+  <header class="top-nav nav">
+    <div class="top-nav__container c-flex-wrapper--center">
+      <a href="#" class="top-nav__logo"><h3>Log Base</h3></a>
+      <!-- u-dn-spが効かないのはc-の方がが後述されているから -->
+      <ul class="c-flex-wrapper--center u-dn-sp">
         <li class="menu-item"><a href="#">項目1</a></li>
         <li class="menu-item"><a href="#">項目2</a></li>
         <li class="menu-item"><a href="#">項目3</a></li>
         <li class="menu-item"><a href="#">項目4</a></li>
         <li class="menu-item"><a href="#">項目5</a></li>
       </ul>
-    </nav>
-  </header>
-
-
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('admin.admin') }}">Admin</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        {% if login is true %}
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                </li>
-                <a class="nav-link active" aria-current="page" href="{{url_for('admin.add_user')}}">Add User</a>
-                <a class="nav-link active" aria-current="page" href="{{url_for('admin.logout')}}">Log Out</a>
-        {% endif %} -->
-
-
-  <!-- content -->
-  <!-- <div class="entry">
-    <table id="entry_desc">
-        <tr><th id="entry_title">Welcome to LOG BASE !</th></tr>
-        <tr><td id="entry_text">
-                We provides space to organize your project by topic
-                <br>
-                and facilitate communication and productivity.
-        </td></tr>x
-    </table>
-    <div id="entry_btn_list">
-        <a class="entry_link" onclick="location.href='/login'">LOG IN</a>
-        <a class="entry_link" onclick="location.href='/signup'">SGIN UP</a>
+      
+      <button class="top-nav__menu-toggler collapser u-dn-pc" data-id="top-nav__sidebar">
+        <!-- <i class="fa-solid fa-bars fa-lg" ></i> -->
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </button>
     </div>
-  </div> -->
+    <ul id="top-nav__slidebar" class="nav-mobile c-flex-wrapper--column" data-status="off">
+      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目1</a></li>
+      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目2</a></li>
+      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目3</a></li>
+      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目4</a></li>
+      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目5</a></li>
+    </ul>
+  </header>
+  
+
+  <!-- main content -->
+  <div id="top-container" class="">
+    <div class="container-fluid">
+      <div class="row row-cols-sp-1 row-cols-tab-2 row-cols-pc-4">
+        <div class="col hey">col</div>
+        <div class="col hey">col</div>
+        <div class="col hey">col</div>
+        <div class="col hey">col</div>
+      </div>
+    </div>
+  </div>
+
+  <div data-aos="fade-right" id="second-container" class="">
+    <div class="container-fluid">
+      <div class="row row-cols-sp-1 row-cols-tab-2 row-cols-pc-4">
+        <div class="col hey">col</div>
+        <div class="col hey">col</div>
+        <div class="col hey">col</div>
+        <div class="col hey">col</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay"></div>
 
   <!-- footer -->
+  <div class="footer'"></div>
 
+  <script>
+    AOS.init();
+  </script>
+
+  <!-- htmlより前述だとgetElement系が取得できない模様(VScodeのLiveServerが原因?) -->
+  <script src="dist/js/main.js"></script>
 </body>
 </html>

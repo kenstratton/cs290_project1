@@ -2,7 +2,7 @@
 // // デフォルトの変数の再定義（関数は使用不可）
 
 // // BootstrapのCSSをすべてインポート(~bootstrapはwebpack記法)
-@import "~bootstrap/scss/bootstrap.scss";
+// @import "~bootstrap/scss/bootstrap.scss";
 
 // // カスタムの設定
 
@@ -12,7 +12,7 @@
 // // @import "~bootstrap/scss/";
 
 // // 関数（カラー、SVG、計算などが操作できるように）
-// @import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/functions";
 
 // // デフォルトの変数の再定義
 // $body-bg: #ffffff;
@@ -26,8 +26,8 @@
 // // 必須
 // @import "~bootstrap/scss/mixins/banner";
 // @include bsBanner("");
-// @import "~bootstrap/scss/maps";
-// @import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
 // @import "~bootstrap/scss/root";
 
 // // オプションのBootstrapコンポーネント
@@ -36,7 +36,7 @@
 // @import "~bootstrap/scss/type";
 // @import "~bootstrap/scss/images";
 // @import "~bootstrap/scss/containers";
-// @import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/grid";
 // @import "~bootstrap/scss/helpers";
 
 // // ユーティリティAPIを組み込んで、_utilities.scssのSassマップに基づいてクラスを生成
