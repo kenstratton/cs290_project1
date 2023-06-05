@@ -1,0 +1,252 @@
+// _index.scss
+
+/*
+* --- プロパティ宣言順 ------
+* mixin
+* ボックスモデルの種類や表示方法を示すプロパティ（box-sizing, display, visibility, floatなど）
+* 位置情報に関するプロパティ（position, z-indexなど）
+* ボックスモデルのサイズに関するプロパティ（width, height, margin, padding, borderなど）
+* フォント関連のプロパティ（font-size, line-heightなど）
+* 色に関するプロパティ（color, background-colorなど）
+* それ以外
+* @contentを使用している@mixin
+* --- webpack関連 注意事項 ----
+* background-imageは../img~ (import先のstyle.scssで読み込まれるため)
+* 
+* --- その他 注意事項 ----
+* HTMLでimgのaltつけ忘れに用心
+* 
+*/
+
+
+// Top セクション -----------------------------------------------
+// #p-index-top {}
+
+.p-index-top__entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-md;
+  padding: $space-md;
+  border-radius: map-get($border-radius-size, primary);
+}
+
+.p-index-top__entry-wrap {
+  margin-bottom: $space-lg;
+}
+
+.p-index-top__signin-entry {
+  background-color: map-get($bg-colors, secondary);
+}
+
+.p-index-top__signup-entry {
+  background-color: map-get($bg-colors, tertiary);
+}
+
+// .p-index-top__image-wrap {}
+
+// About セクション ---------------------------------------------
+#p-index-about {
+  padding: $space-3xlg 0;
+  background-color: map-get($p-index-about, bg-color);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+.p-index-about__news-section-header{
+  margin-bottom: $space-xsm;
+  font-size: map-get($font-size, title-primary);
+  font-family: 'Itim', cursive;
+
+}
+
+.p-index-about__brief-wrap {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: $space-lg;
+}
+
+.p-index-about__github-entry {
+  padding: 5px;
+  border-radius: 0.3rem;
+  font-size: map-get($font-size, link-primary);
+  background-color: map-get($bg-colors, tertiary);
+  @include hover() {
+    color: wheat;
+  }
+}
+
+.p-index-about__news-list {
+  overflow: scroll;
+  max-height: 65vh;
+  padding: $space-2xsm $space-md;
+  border: 1px solid;
+  border-radius: map-get($border-radius-size, primary);
+  @include mq(sp) {
+    max-height: 55vh;
+  }
+}
+
+.p-index-about__news-wrap {
+  padding: $space-2xsm 0;
+  border-bottom: map-get($border, primary-sm);
+}
+
+.p-index-about__news-wrap:last-child {
+  border: none;
+}
+
+.p-index-about__news-header-wrap {
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+}
+
+.p-index-about__news-pilar-icon { //? pilar icon componentならん？ (l-headerにあり)
+  border-left: 4px solid white;
+  height: 1.5rem;
+  margin-bottom: auto;
+  margin-right: $space-xsm;
+  margin-top: auto;
+  border-radius: 0.3rem;
+}
+
+.p-index-about__news-header { font-size: map-get($font-size, title-tertiary); }
+
+.p-index-about__news-content { line-height: $lineheight-half; }
+
+.p-index-about__news-date {
+  font-size: map-get($font-size, date);
+  color: map-get($font-colors, secondary);
+}
+
+
+// Func セクション ----------------------------------------------
+#p-index-func {
+  color: map-get($font-colors, white-back);
+  background-color: map-get($p-index-func, bg-color);
+}
+
+.p-index-func__modal-entry {
+  margin-bottom: $space-xlg;
+}
+.p-index-func__modal-entry:nth-child(5) {
+  margin: 0;
+}
+
+.p-index-func__img-wrap {
+  transition: scale 0.2s ease;
+  position: relative;
+  padding-top: 66.666667%;
+  margin-bottom: $space-md;
+  border-radius: map-get($border-radius-size, primary);
+  box-shadow: 0.05em 0.15em 0.3em rgba(0, 0, 0, 0.2);
+  @include hover() {
+    scale: 1.05;
+    box-shadow: 0.15em 0.45em 0.9em rgba(0,0,0,0.25);
+  }
+}
+
+.p-index-func__modal-opener {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: map-get($border-radius-size, primary);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  cursor: pointer;
+}
+
+#p-index-func__modal-opener--channel { background-image: url(../img/sunflower.jpg); }
+
+#p-index-func__modal-opener--meeting { background-image: url(../img/space_big.png); }
+
+#p-index-func__modal-opener--message { background-image: url(../img/icescream.png); }
+
+.p-index-func__img-txt { text-align: center; }
+
+.p-index-func__modal {
+  z-index: 7;
+  opacity: 0;
+  transform: scaleY(0);
+  transition: transform 0.3s ease-out, opacity 0.12s ease;
+  position: fixed;
+  top: map-get($p-index-func, modal-top-pos);
+  right: 0;
+  left: 0;
+  width: 85%;
+  margin: auto;
+  padding: 0;
+  &[data-status="on"] {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  &[data-status="off"] {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+.p-index-func__modal-closer {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+
+.p-index-func__modal-wrap{
+  overflow: scroll;
+  max-height: 86vh;
+  padding: 4% 1%;
+  border-radius: map-get($border-radius-size, primary);
+  background-color: map-get($bg-colors, index-modal);
+}
+
+.p-index-func__modal-content{ margin: 0; }
+
+.p-index-func__modal-header {
+  text-align: center;
+  font-size: map-get($font-size, title-primary);
+  margin-bottom: $space-md;
+}
+
+.p-index-func__modal-txt {
+  overflow: scroll;
+  max-height: 40em;
+  margin-bottom: $space-md;
+  @include mq(sp) {
+    overflow: unset;
+    max-height: none;
+  }
+}
+
+.p-index-func__modal-thumnails {
+  text-align: center;
+  >img {
+    width: 75px;
+    height: 75px;
+    margin-right: $space-2xsm;
+    margin-bottom: $space-xsm;
+    border-radius: map-get($border-radius-size, primary);
+    object-fit: cover;
+    cursor: pointer;
+    &[data-status="on"] {
+      scale: 1.1;
+      box-shadow: 0.05em 0.15em 0.3em rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.p-index-func__modal-mainimage {
+  display: flex;
+  overflow: hidden;
+  >img {
+    max-height: 600px;
+    max-width: 100%;
+  }
+}

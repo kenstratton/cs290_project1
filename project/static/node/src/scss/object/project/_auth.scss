@@ -1,0 +1,31 @@
+// _auth.scss
+
+.p-auth__form {
+  width: 50%;
+  min-width: 250px;
+  margin: 0 auto;
+}
+
+.p-auth__input-label { font-size: map-get($font-size, label); }
+
+.p-auth__input {
+  width: 100%;
+  margin: $space-2xsm 0 $space-lg;
+  padding: $space-sm;
+  border: map-get($border, primary);
+  border-radius: map-get($border-radius-size, primary);
+  font-size: map-get($font-size, input);
+  font-weight: 600;
+  background-color: map-get($bg-colors, primary);
+}
+
+.p-auth__error-msg {
+  float: right;
+  font-size: map-get($font-size, note);
+  color: map-get($font-colors, alert);
+}
+
+.p-auth__submit {
+  margin: 1.5rem auto 0;
+  border: none;
+}

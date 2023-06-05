@@ -1,11 +1,46 @@
-// メディアクエリ
+// _mixin.scss
+
+// メディアクエリ ---------------------------------------------------------
 $breakpoints: (
-  sp:    'screen and (max-width: 767px)',
-  tab:   'screen and (min-width: 768px) and ( max-width:1024px)',
-  pc:    'screen and (min-width: 1025px)'
+  sp:         'screen and (max-width: 767px)',
+  tab-less:   'screen and (max-width: 1024px)',
+  tab:        'screen and (min-width: 768px) and (max-width: 1024px)',
+  tab-more:   'screen and (min-width: 768px)',
+  pc:         'screen and (min-width: 1025px)'
 );
+
 @mixin mq($bp) {
   @media #{map-get($breakpoints, $bp)} {
     @content;
   }
+}
+
+// 対象画面を絞るmin-width (al->allの意, spは指定なし)
+$frame-min-widths: (
+  al:    'min-width: 0px',
+  tab:   'min-width: 768px',
+  pc:    'min-width: 1025px'
+);
+
+// Hoverを設定 (対象デバイスがhover可能およびポインターデバイスを使用している場合に機能します)
+@mixin hover ($frame: null) {
+  $frame-min-width: "";
+  @if $frame == pc {
+    $frame-min-width: map-get($frame-min-widths, pc);
+  } @else if $frame == tab {
+    $frame-min-width: map-get($frame-min-widths, tab);
+  } @else {
+    $frame-min-width: map-get($frame-min-widths, al);
+  }
+  @media (hover: hover) and (pointer: fine) and ($frame-min-width) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Link(aタグ etc.)用のサイズ適正化
+@mixin optimized-link {
+  display: flex;
+  align-items: center;
 }

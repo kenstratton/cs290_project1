@@ -1,0 +1,35 @@
+<!-- add_user.html -->
+
+{% extends 'project/admin/layout.html' %}
+
+{% block main %}
+
+<form method="POST" class="bg-dark" id="user_form" novalidate>
+{{ form.hidden_tag() }}
+
+{{ form.name.label(class="form-label text-white") }}
+<span class="error_msg" id="error_name" data-error="{{form.is_valid('name')}}">
+    {{form.name.errors[0]}}</span>
+{{ form.name(class="form-control") }}
+<br>
+
+{{ form.email.label(class="form-label text-white") }}
+<span class="error_msg" id="error_email" data-error="{{form.is_valid('email')}}">
+    {{form.email.errors[0]}}</span>
+{{ form.email(class="form-control") }}
+<br>
+
+{{ form.psw.label(class="form-label text-white") }}
+<span class="error_msg" id="error_psw" data-error="{{form.is_valid('psw')}}">
+    {{form.psw.errors[0]}}</span>
+{{ form.psw(class="form-control") }}
+<br>
+
+{{ form.conf.label(class="form-label text-white") }}
+{{ form.conf(class="form-control") }}
+<br>
+
+{{ form.submit(class="btn btn-secondary") }}
+</form>
+
+{% endblock %}

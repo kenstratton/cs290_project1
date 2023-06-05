@@ -5,72 +5,509 @@
 	<title>デモページ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="dist/css/main.min.css" media="screen">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <script src="https://kit.fontawesome.com/c39d0aac49.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <!-- ! 以下 Wifiなしの環境でコメアウト -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
+  <script type="text/javascript" src="https://kit.fontawesome.com/c39d0aac49.js" crossorigin="anonymous"></script>
+  <!-- <script type="text/javascript" src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
 </head>
-<body>
-  <!-- header -->
-  <header class="top-nav nav">
-    <div class="top-nav__container c-flex-wrapper--center">
-      <a href="#" class="top-nav__logo"><h3>Log Base</h3></a>
-      <!-- u-dn-spが効かないのはc-の方がが後述されているから -->
-      <ul class="c-flex-wrapper--center u-dn-sp">
-        <li class="menu-item"><a href="#">項目1</a></li>
-        <li class="menu-item"><a href="#">項目2</a></li>
-        <li class="menu-item"><a href="#">項目3</a></li>
-        <li class="menu-item"><a href="#">項目4</a></li>
-        <li class="menu-item"><a href="#">項目5</a></li>
-      </ul>
-      
-      <button class="top-nav__menu-toggler collapser u-dn-pc" data-id="top-nav__sidebar">
-        <!-- <i class="fa-solid fa-bars fa-lg" ></i> -->
-        <i class="fa-solid fa-xmark fa-xl"></i>
-      </button>
+<body id="body">
+  <header class="l-header c-flex-wrapper--row">
+    <div class="l-header__wrap">
+      <a href="#" id="l-header__home-entry"><h3>Log Base</h3></a>
+      <div id="l-header__mainmenu-toggler" class="toggler u-dn-pc">
+        <button id="l-header__mainmenu-opener" class="c-btn--quad c-btn--hover-bg-primary">
+          <i class="fa-solid fa-bars fa-lg" ></i>
+        </button>
+        <button id="l-header__mainmenu-closer" class="c-btn--quad c-btn--hover-bg-primary">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
     </div>
-    <ul id="top-nav__slidebar" class="nav-mobile c-flex-wrapper--column" data-status="off">
-      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目1</a></li>
-      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目2</a></li>
-      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目3</a></li>
-      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目4</a></li>
-      <li class="list-item top-nave__sidebar__list-item"><a href="#">項目5</a></li>
+    <ul id="l-header__mainmenu" class="u-non-anim-pc">
+      <li class="l-header__mainmenu-item">
+        <div id="l-header__top-entry" class="l-header__main-layer-entry">トップ</div>
+        <!-- <a href="#" id="l-header__top-entry" class="l-header__main-layer-entry">トップ</a> -->
+      </li>
+      <li class="l-header__mainmenu-item">
+        <div id="l-header__about-entry" class="l-header__main-layer-entry">このサイトについて</div>
+        <!-- <a href="#" id="l-header__about-entry" class="l-header__main-layer-entry">このサイトについて</a> -->
+      </li>
+      <li class="l-header__mainmenu-item">
+        <div class="l-header__submenu-toggler toggler">
+          <p>機能</p>
+          <div class="l-header__submenu-arrow u-dn-pc"></div>
+        </div>
+        <ul class="l-header__submenu tgl-reactor">
+          <li>
+            <div id="l-header__modal-opener--p-index-func-channel" class="l-header__sub-layer-entry">
+              <div class="l-header__submenu-pilar-icon"></div>
+              <div>
+                <p class="l-header__submenu-item-title">チャンネル</p>
+                <p class="l-header__submenu-item-detail">スムーズなタスク整理</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="l-header__modal-opener--p-index-func-meeting" class="l-header__sub-layer-entry">
+              <div class="l-header__submenu-pilar-icon"></div>
+              <div>
+                <p class="l-header__submenu-item-title">ミーティング</p>
+                <p class="l-header__submenu-item-detail">生産的なミーティング環境</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="l-header__modal-opener--p-index-func-message" class="l-header__sub-layer-entry">
+              <div class="l-header__submenu-pilar-icon"></div>
+              <div>
+                <p class="l-header__submenu-item-title">メッセージ</p>
+                <p class="l-header__submenu-item-detail">グループのコミュニケーションを効率化</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="l-header__mainmenu-item">
+        <div class="l-header__submenu-toggler toggler">
+          <span>サインイン</span>
+          <div class="l-header__submenu-arrow u-dn-pc"></div>
+        </div>
+        <ul class="l-header__submenu tgl-reactor">
+          <li>
+            <a href="#" class="l-header__sub-layer-entry">
+              <div class="l-header__submenu-pilar-icon"></div>
+              <div>
+                <p class="l-header__submenu-item-title">サインイン</p>
+                <p class="l-header__submenu-item-detail">既にアカウントをお持ちの方</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="l-header__sub-layer-entry">
+              <div class="l-header__submenu-pilar-icon"></div>
+              <div>
+                <p class="l-header__submenu-item-title">アカウントを作成</p>
+                <p class="l-header__submenu-item-detail">新規アカウントを作成します</p>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </li>
     </ul>
+    <div class="l-header__flash-wrap">
+      <div class="l-header__flash-message">
+        <p class="l-header__flash-text">hey</p>
+        <button class="l-header__flash-closer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="l-header__flash-message">
+        <p class="l-header__flash-text">hello</p>
+        <button class="l-header__flash-closer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
   </header>
-  
 
   <!-- main content -->
-  <div id="top-container" class="">
-    <div class="container-fluid">
-      <div class="row row-cols-sp-1 row-cols-tab-2 row-cols-pc-4">
-        <div class="col hey">col</div>
-        <div class="col hey">col</div>
-        <div class="col hey">col</div>
-        <div class="col hey">col</div>
+  <div class="l-main">
+    <section id="p-index-top" class="l-main__section">
+      <div class="content">
+        <h1 class="p-index__section-header">WELCOME TO LOG BASE</h1>
+        <div class="row">
+          <div class="p-index-top__entry-wrap col-sp-12 col-tab-5">
+            <a href="" class="p-index-top__entry p-index-top__signin-entry">
+              サインイン
+              <i class="fa-solid fa-angles-right"></i>
+            </a>
+            <a href="" class="p-index-top__entry p-index-top__signup-entry">
+              アカウントを作成
+              <i class="fa-solid fa-angles-right"></i>
+            </a>
+          </div>
+          <div class="p-index-top__image-wrap col-sp-12 col-tab-7">
+            <div style="min-height: 40vh; background-color: gray;"></div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div data-aos="fade-right" id="second-container" class="">
-    <div class="container-fluid">
-      <div class="row row-cols-sp-1 row-cols-tab-2 row-cols-pc-4">
-        <div class="col hey">col</div>
-        <div class="col hey">col</div>
-        <div class="col hey">col</div>
-        <div class="col hey">col</div>
+    </section>
+    <section id="p-index-about" class="l-main__section">
+      <div class="content row">
+        <h1 class="p-index__section-header">このサイトについて</h1>
+        <div class="p-index-about__brief-wrap col-sp-12 col-tab-6">
+          <div class="p-index__section-brief">
+            こちらはポートフォリオ用に作成したWEBアプリです。
+            <br>
+            基本用途はグループ内でのメッセージのやり取りですが、
+            <br>
+            デスクトップではビデオチャットもご利用可能です。
+            <br>
+            どうぞ手塩にかけ育てた機能達に触れていってください。
+          </div>
+          <div>
+            <a href="#" class="p-index-about__github-entry">Github Page <i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="col-sp-12 col-tab-6">
+          <h3 class="p-index-about__news-section-header">- Latest news -</h3>
+          <ul class="p-index-about__news-list">
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+            <li class="p-index-about__news-wrap">
+              <div class="p-index-about__news-header-wrap">
+                <div class="p-index-about__news-pilar-icon"></div>
+                <p class="p-index-about__news-header">news title 1</p>
+              </div>
+              <p class="p-index-about__news-date">2023/03/21</p>
+              <p class="p-index-about__news-content">
+                This is the latest news on this web application.
+                <br>
+                This is still being under construction.
+                <br> We offer great apology for your inconvenience.
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <section id="p-index-func" class="l-main__section">
+      <div class="content row">
+        <h1 class="p-index__section-header">機能</h1>
+        <p class="p-index__section-brief">
+          WEBアプリ内にて利用できる機能達を紹介します。
+        </p>
+        <div class="p-index-func__modal-entry col col-sp-12 col-tab-4">
+          <div class="p-index-func__img-wrap">
+            <div id="p-index-func__modal-opener--channel" class="p-index-func__modal-opener toggler" data-toggle="off"></div>
+          </div>
+          <p class="p-index-func__img-txt">チャンネル</p>
+        </div>
+        <div class="p-index-func__modal-entry col col-sp-12 col-tab-4">
+          <div class="p-index-func__img-wrap">
+            <div id="p-index-func__modal-opener--meeting" class="p-index-func__modal-opener toggler" data-toggle="off"></div>
+          </div>
+          <p class="p-index-func__img-txt">ミーティング</p>
+        </div>
+        <div class="p-index-func__modal-entry col col-sp-12 col-tab-4">
+          <div class="p-index-func__img-wrap">
+            <div id="p-index-func__modal-opener--message" class="p-index-func__modal-opener toggler" data-toggle="off"></div>
+          </div>
+          <p class="p-index-func__img-txt">メッセージ</p>
+        </div>
+        <div id="p-index-func__modal--channel" class="p-index-func__modal u-preload">
+          <div id="p-index-func__modal-closer--channel" class="p-index-func__modal-closer c-btn--quad c-btn--hover-bg-white-back toggler">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="p-index-func__modal-wrap">
+            <div class="p-index-func__modal-content row">
+              <div class="col col-sp-12 col-tab-4">
+                <p class="p-index-func__modal-header">チャンネル</p>
+                <p class="p-index-func__modal-txt">
+                  Ariel, listen to me
+                  The human world, it's a mess
+                  Life under the sea is better than anything they've got up there
+                  <br>
+                  <br>
+                  The seaweed is always greener
+                  In somebody else's lake
+                  You dream about going up there
+                  But that is a big mistake
+                  Just look at the world around you
+                  Right here on the ocean floor
+                  Such wonderful things surround you
+                  What more is you lookin' for?
+                  <br>
+                  <br>
+                  Under the sea, under the sea
+                  Darling, it's better down where it's wetter
+                  Take it from me
+                  Up on the shore, they work all day
+                  Out in the sun they slave away
+                  While we devotin', full time to floatin'
+                  Under the sea (Ah-ha-ha)
+                  <br>
+                  <br>
+                  Down here all the fish is happy
+                  As off through the waves they roll
+                  The fish on the land ain't happy
+                  They sad cause they in their bowl
+                  But fish in the bowl is lucky
+                  They in for a worser fate
+                  One day when the boss get hungry
+                  Guess who's gon' be on the plate?
+                  Uh-oh!
+                  <br>
+                  <br>
+                  Under the sea, under the sea
+                  Nobody beat us
+                  Fry us and eat us in fricassee
+                  We what the land folks loves to cook
+                  Under the sea we off the hook
+                  We got no troubles, life is the bubbles
+                  Under the sea (Under the sea)
+                  Under the sea (Under the sea)
+                  Since life is sweet here
+                  We got the beat here naturally (Naturally-y-y-y)
+                  Even the sturgeon an' the ray
+                  They get the urge 'n' start to play
+                  We got the spirit, you got to hear it
+                  Under the sea
+                  <br>
+                  <br>
+                  [Bridge: Sebastian, Fluke]
+                  The newt play the flute
+                  The carp play the harp
+                  The plaice play the bass
+                  And they soundin' sharp
+                  The bass play the brass
+                  The chub play the tub
+                  The fluke is the duke of soul (Yeah)
+                  The ray he can play
+                  The lings on the strings
+                  The trout rockin' out
+                  The blackfish she sings
+                  The smelt and the sprat, they know where it's at
+                  An' oh that blowfish blow
+                  (Wah, ah-ha, yeah)
+                </p>
+              </div>
+              <div class="col col-sp-12 col-tab-8">
+                <div class="p-index-func__modal-thumnails modal-thumnails">
+                  <img src="src/img/sunflower.jpg" alt="詳細" data-status="on">
+                  <img src="src/img/space_big.png" alt="詳細">
+                  <img src="src/img/icescream.png" alt="詳細">
+                </div>
+                <div class="p-index-func__modal-mainimage modal-mainimages">
+                  <img src="src/img/sunflower.jpg" alt="詳細">
+                  <img src="src/img/space_big.png" alt="詳細">
+                  <img src="src/img/icescream.png" alt="詳細">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="p-index-func__modal--meeting" class="p-index-func__modal u-preload">
+          <div id="p-index-func__modal-closer--meeting" class="p-index-func__modal-closer c-btn--quad c-btn--hover-bg-white-back toggler">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="p-index-func__modal-wrap">
+            <div class="p-index-func__modal-content row">
+              <div class="col col-sp-12 col-tab-4">
+                <p class="p-index-func__modal-header">ミーティング</p>
+                <p class="p-index-func__modal-txt">hey hey hoo</p>
+              </div>
+              <div class="col col-sp-12 col-tab-8">
+                <div class="p-index-func__modal-thumnails modal-thumnails">
+                  <img src="src/img/space_big.png" alt="詳細" data-status="on">
+                  <img src="src/img/sunflower.jpg" alt="詳細">
+                </div>
+                <div class="p-index-func__modal-mainimage modal-mainimages">
+                  <img src="src/img/space_big.png" alt="詳細">
+                  <img src="src/img/sunflower.jpg" alt="詳細">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="p-index-func__modal--message" class="p-index-func__modal u-preload">
+          <button id="p-index-func__modal-closer--message" class="p-index-func__modal-closer c-btn--quad c-btn--hover-bg-white-back toggler">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="p-index-func__modal-wrap">
+            <div class="p-index-func__modal-content row">
+              <div class="col col-sp-12 col-tab-4">
+                <p class="p-index-func__modal-header">メッセージ</p>
+                <p class="p-index-func__modal-txt">
+                  Ariel, listen to me
+                  The human world, it's a mess
+                  Life under the sea is better than anything they've got up there
+                  <br>
+                  <br>
+                  The seaweed is always greener
+                  In somebody else's lake
+                  You dream about going up there
+                  But that is a big mistake
+                  Just look at the world around you
+                  Right here on the ocean floor
+                  Such wonderful things surround you
+                  What more is you lookin' for?
+                  <br>
+                  <br>
+                  Under the sea, under the sea
+                  Darling, it's better down where it's wetter
+                  Take it from me
+                  Up on the shore, they work all day
+                  Out in the sun they slave away
+                  While we devotin', full time to floatin'
+                  Under the sea (Ah-ha-ha)
+                  <br>
+                  <br>
+                  Down here all the fish is happy
+                  As off through the waves they roll
+                  The fish on the land ain't happy
+                  They sad cause they in their bowl
+                  But fish in the bowl is lucky
+                  They in for a worser fate
+                  One day when the boss get hungry
+                  Guess who's gon' be on the plate?
+                  Uh-oh!
+                  <br>
+                  <br>
+                  Under the sea, under the sea
+                  Nobody beat us
+                  Fry us and eat us in fricassee
+                  We what the land folks loves to cook
+                  Under the sea we off the hook
+                  We got no troubles, life is the bubbles
+                  Under the sea (Under the sea)
+                  Under the sea (Under the sea)
+                  Since life is sweet here
+                  We got the beat here naturally (Naturally-y-y-y)
+                  Even the sturgeon an' the ray
+                  They get the urge 'n' start to play
+                  We got the spirit, you got to hear it
+                  Under the sea
+                  <br>
+                  <br>
+                  [Bridge: Sebastian, Fluke]
+                  The newt play the flute
+                  The carp play the harp
+                  The plaice play the bass
+                  And they soundin' sharp
+                  The bass play the brass
+                  The chub play the tub
+                  The fluke is the duke of soul (Yeah)
+                  The ray he can play
+                  The lings on the strings
+                  The trout rockin' out
+                  The blackfish she sings
+                  The smelt and the sprat, they know where it's at
+                  An' oh that blowfish blow
+                  (Wah, ah-ha, yeah)
+                </p>
+              </div>
+              <div class="col col-sp-12 col-tab-8">
+                <div class="p-index-func__modal-thumnails modal-thumnails">
+                  <img src="src/img/icescream.png" alt="詳細" data-status="on">
+                </div>
+                <div class="p-index-func__modal-mainimage modal-mainimages">
+                  <img src="src/img/icescream.png" alt="詳細">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="overlay"></div>
+    <section id="p-index-top" class="l-main__section">
+      <div class="content">
+        <section class="splide" aria-label="Splideの基本的なHTML">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide">Slide 01</li>
+              <li class="splide__slide">Slide 02</li>
+              <li class="splide__slide">Slide 03</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </section>
+  
+  </div>
 
   <!-- footer -->
-  <div class="footer'"></div>
+  <div class="l-footer">
+    <p class="l-footer__copy-light-txt">©︎ 2023 Ken Kakizono</p>
+  </div>
 
-  <script>
-    AOS.init();
-  </script>
+  <div id="modal-overlay" class="toggler"></div>
+
+  <script src="dist/ignored/js/variable.js"></script>
 
   <!-- htmlより前述だとgetElement系が取得できない模様(VScodeのLiveServerが原因?) -->
   <script src="dist/js/main.js"></script>
+  <script src="dist/js/main.min.js"></script>
+  <script src="node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
+  <script>new Splide( '.splide' ).mount()</script>
+  <script>// AOS.init();</script>
 </body>
 </html>

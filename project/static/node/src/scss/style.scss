@@ -77,29 +77,29 @@ mixin
 @import "foundation/variable";
 @import "foundation/vendors";
 @import "foundation/mixin";
+@import "foundation/reset";
 @import "foundation/base";
-
 
 /*-------------------------------------------------------------------
 |  Layout                                                           |
+|  ワイヤーフレームに定義されるような大きなコンテナブロック(IDセレクタ指定可)   |
 -------------------------------------------------------------------*/
 
-@import "layout/header";
-@import "layout/main";
-@import "layout/footer";
-@import "layout/sidebar";
-
+@import "layout/**";
 
 /*-------------------------------------------------------------------
 |  Object                                                           |
 -------------------------------------------------------------------*/
 
 /*  Component  -----------------------------------------*/
-@import "object/component/wrapper";
+// Component 再利用できるような小さなモジュール、固有の幅や装飾的なスタイルは極力指定しない
+@import "object/component/**";
 
 /*   Project   -----------------------------------------*/
+// プロジェクト固有のUI(殆どのスタイルの追加はこのレイヤー)
+@import "object/project/**";
 
 /*    Theme    -----------------------------------------*/
 
 /*   Utility   -----------------------------------------*/
-@import "object/utility/utility";
+@import "object/utility/**";

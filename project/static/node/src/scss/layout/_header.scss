@@ -1,111 +1,217 @@
-/*
-* --- プロパティ宣言順 ------
-* mixin
-* ボックスモデルの種類や表示方法を示すプロパティ（box-sizing, display, visibility, floatなど）
-* 位置情報に関するプロパティ（position, z-indexなど）
-* ボックスモデルのサイズに関するプロパティ（width, height, margin, padding, borderなど）
-* フォント関連のプロパティ（font-size, line-heightなど）
-* 色に関するプロパティ（color, background-colorなど）
-* それ以外
-* @contentを使用している@mixin
-*/
+// _header.scss
 
-// Base
-
-// Layout ワイヤーフレームに定義されるような大きなコンテナブロック(IDセレクタを指定可)
-.top-nav {
-  width: 100%;
-  height: 60px;
-  color: map-get($font-colors, header);
-  background-color: $gray-xh;
+.l-header__submenu-toggler,
+.l-header__main-layer-entry, .l-header__sub-layer-entry {
+  padding: $space-sm 0;
+  @include hover() {
+    background-color: map-get($bg-colors, secondary);
+  }
+  @include mq(pc) {
+    padding: $space-sm;
+    border-radius: map-get($border-radius-size, primary);
+  }
 }
 
-.top-nav__container {
-  height: 100%;
-  width: 80%;
-  margin-right: auto;
-  margin-left: auto;
-  // display: flex;
-}
+.l-header__sub-layer-entry { display: flex; }
 
-.top-nav__logo {
-  margin-right: auto;
-}
-
-.top-nav__menu-toggler {
-  
-}
-
-#top-nav__sidebar {
-  width: 300px;
-  height: 100%;
-  background-color: $black;
-}
-
-.top-nave__sidebar__list-item {
-  height: 50px;
-  line-height: 50px;
-}
-
-// Component 再利用できるような小さなモジュール、固有の幅や装飾的なスタイルは極力指定しない
-.flex-wrapper {
-  display: flex;
+.l-header {
   align-items: center;
-}
-.nav {
+  z-index: 5;
   position: fixed;
   top: 0;
   left: 0;
+  border-bottom: map-get($l-header, border);
+  width: 100%;
+  height: map-get($l-header, container-height);
+  background-color: map-get($bg-colors, primary);
 }
-.nav-mobile {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform 0.3s 0s ease;
-}
-// .nav-mobile[data-status="on"] {
-//   transform: translateY(0);
-// }
-// .nav-mobile[data-status="off"] {
-//   transform: translateY(-100%);
-// }
 
-
-.nav-menu {
+/* --------------------------------------------------------------------
+|  height, background-colorは                                          |
+|  l-header-wrapの裏からスライド表示されるl-header-menuの透過を隠す目的       |
+----------------------------------------------------------------------*/
+.l-header__wrap {
   display: flex;
+  flex: 1;
+  flex-flow: row;
+  align-items: center;
+  z-index: 4;
+  height: 100%;
+  width: 100%;
+  padding: 0 $space-lg;
+  background-color: map-get($bg-colors, primary);
+  @include mq(tab-less) {
+    flex: none;
+  }
 }
 
-
-
-
-
-// Project プロジェクト固有のUI(殆どのスタイルの追加はこのレイヤー)
-
-.list-item {
-  display: inline-block;
-  list-style: none;
-  padding: 0 13%;
+#l-header__home-entry {
+  margin-right: auto;
+  padding: $space-sm;
+  border-radius: map-get($border-radius-size, primary);
+  font-size: map-get($font-size, link-primary);
+  @include hover() {
+    background-color: map-get($bg-colors, secondary);
+  }
 }
 
-#top-container {
-  height: calc(100vh);
-  padding-top: 60px;
-}
-#top-container * {
-  color: black;
+#l-header__mainmenu-toggler {
+  position: relative;
 }
 
-#second-container {
-  height: calc(100vh);
-  padding-top: 60px;
-}
-#second-container * {
-  color: black;
-}
-
-[class*="hey"] {
-  border: solid 1px;
-}
-.collapser {
+#l-header__mainmenu-opener {
+  transform: scale(1);
+  position: absolute;
+  top: -17px;
+  right: 0;
   border: none;
+  font-size: map-get($font-size, btn-icon);
+  > i {
+    margin: auto 0;
+  }
+  &[data-status="on"] {
+    transition: transform 0.15s 0s ease;
+    transform: scale(0);
+  }
+  &[data-status="off"] {
+    transition: transform 0.15s 0.15s ease;
+    transform: scale(1);
+  }
+}
+
+#l-header__mainmenu-closer {
+  transform: scale(0);
+  position: absolute;
+  top: -17px;
+  right: 0;
+  &[data-status="on"] {
+    transition: transform 0.15s 0.15s ease;
+    transform: scale(1);
+  }
+  &[data-status="off"] {
+    transition: transform 0.15s 0s ease;
+    transform: scale(0);
+  }
+}
+
+#l-header__mainmenu {
+  transition: transform 0.3s 0s ease;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  z-index: 4;
+  padding: 0 $space-xlg;
+  background-color: map-get($bg-colors, primary);
+  @include mq(tab-less) {
+    flex-flow: column;
+    align-items: initial;
+    z-index: 3;
+    position: absolute;
+    bottom: 1.5px;
+    border-bottom: map-get($border, primary);
+    width: 100%;
+  }
+  &[data-status="on"] {
+    transform: translateY(100%);
+  }
+  &[data-status="off"] {
+    transform: translateY(-60px);
+  }
+}
+
+.l-header__mainmenu-item {
+  position: relative;
+  @include hover(pc) {
+    .l-header__submenu {
+      display: block;
+    }
+  }
+}
+
+.l-header__mainmenu-item + li {
+  @include mq(tab-less) {
+    border-top: map-get($border, primary);
+  }
+}
+
+.l-header__submenu {
+  display: none;
+  @include mq(pc) {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: max-content;
+    min-width: 220px;
+    max-width: 250px;
+    padding: $space-2xsm;
+    border: map-get($border, primary);
+    border-radius: map-get($border-radius-size, primary);
+    background-color: map-get($bg-colors, primary);
+  }
+  @include mq(tab-less) {
+    &[data-status="on"] {
+      display: block;
+    }
+    &[data-status="off"] {
+      display: none;
+    }
+  }
+}
+
+.l-header__submenu-toggler {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.l-header__submenu-arrow {
+  position: relative;
+  display: inline-block;
+  &::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0.3rem;
+    transform: rotate(135deg);
+    width: 7px;
+    height: 7px;
+    margin-top: -0.5rem;
+    border-right: solid 1.5px map-get($font-colors, primary);
+    border-top: solid 1.5px map-get($font-colors, primary);
+  }
+}
+
+.l-header__submenu-pilar-icon { //? pilar icon componentならん？ (p-index-aboutにあり)
+  height: 2rem;
+  border-left: 4px solid white;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: $space-md;
+}
+
+.l-header__submenu-item-title {
+  font-size: map-get($font-size, title-quaternary);
+}
+
+.l-header__submenu-item-detail {
+  font-size: map-get($font-size, note);
+  margin-top: $space-xsm;
+  word-wrap: break-word;
+}
+
+.l-header__flash-wrap {
+  display: flex;
+  position: absolute;
+  top: map-get($l-header, container-height);
+  left: 0;
+}
+
+.l-header__flash-message {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  padding: $space-2xsm $space-xlg;
+  border-bottom: map-get($border, primary);
+  background-color: map-get($bg-colors, secondary);
 }

@@ -28,6 +28,7 @@ migrate = Migrate(app, db)
 
 
 # Assets ----------------------------------------------
+#* scssはwebpackでの実装に変更
 
 # from flask_assets import Environment, Bundle
 # assets = Environment(app)

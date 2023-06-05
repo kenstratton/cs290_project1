@@ -1,0 +1,20 @@
+<!-- layout.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+{% if title != None %}{{ title }} ー {% endif %}
+LOG BASE
+{% endblock %}
+
+{% block layout %}
+
+{% include 'project/user/shared/header.html' %}
+
+<div class="l-main">
+    {% block main %}{% endblock %}
+</div>
+
+{% include 'project/user/shared/footer.html' %}
+
+{% endblock %}

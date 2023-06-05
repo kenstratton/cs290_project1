@@ -27,54 +27,55 @@ def search_user(name=None, email=None):
         )).first()
     return user
 
+
 # Clear user-related session status
 def clear_user_session():
     session.pop('user_id', None)
     session.pop('auth', None)
 
 
-# Set session for user entry
+# Set session for logged-in user
 def set_user_session(user, limit=3600):
     clear_user_session()  # -> to reset session['auth'] generated before login
     session['user_id'] = user.id
     session['user_lifetime'] = time() + limit
 
 
-# Set session for authentication status
+# Set session for authenticated user
 def set_auth_session(limit=1800):
     session['auth'] = True
     session['auth_lifetime'] = time() + limit
 
 
-# Check login status of a user
+# Check if user is logged in
 def is_user_in_session():
     if 'user_id' in session:
         return True
     return False
 
 
-# Check authentification status to particular pages
+# Check if user is authenticated for particular pages
 def is_auth_in_session():
     if 'auth' in session:
         return True
     return False
 
 
-# Check if user lifetime isnt expired
+# Check if user lifetime is expired
 def is_user_expired():
     if session['user_lifetime'] < time():
         return True
     return False
 
 
-# Check if auth lifetime isnt expired
+# Check if authentication lifetime is expired
 def is_auth_expired():
     if session['auth_lifetime'] < time():
         return True
     return False
 
 
-# Check user lifetime and manage user-related session status
+# If user lifetime and manage user-related session status
 def check_user_lifetime():
     if is_user_in_session():
         if not is_user_expired():
@@ -88,11 +89,11 @@ def check_user_lifetime():
 # Check auth lifetime and manage session status only of auth
 def check_auth_lifetime():
     if is_auth_in_session():
-       if is_auth_expired():
-           session.pop('auth', None)
+        if is_auth_expired():
+            session.pop('auth', None)
 
 
-# Render a template with specifickeywords
+# Render a template with specific keywords
 def render_temp(path, title=None, form=None, **kwrgs):
     return render_template(
         path,
@@ -117,23 +118,22 @@ def before_request():
 
 
 # Functions for Supporting Routing --------------------------------------
-
-# To the entry page if a user is NOT logged in
-def login_required(view):
-    @wraps(view)
-    def censored_view(*args, **kwargs):
-        if not is_user_in_session():
-            return redirect(url_for('user.entry'))
-        return view(*args, **kwargs)
-    return censored_view
-
-
 # To the top page if a user is logged in 
 def is_logged_in(view):
     @wraps(view)
     def censored_view(*args, **kwargs):
         if is_user_in_session():
             return redirect(url_for('user.index'))
+        return view(*args, **kwargs)
+    return censored_view
+
+
+# To the initial page if a user is NOT logged in
+def login_required(view):
+    @wraps(view)
+    def censored_view(*args, **kwargs):
+        if not is_user_in_session():
+            return redirect(url_for('user.intl'))
         return view(*args, **kwargs)
     return censored_view
 
@@ -165,16 +165,16 @@ def under_maintenace():
 
 
 
-# Views for User Access to This Application -----------------------------
+# Views for unauthorized users  -----------------------------------------
 
-# Entry page for not logged in users
-@user_bp.route('/entry')
+# Initial page for unauthorized users
+@user_bp.route('/intl')
 @is_logged_in
-def entry():
-    return render_temp('user/contents/auth/entry.html', 'Entry')
+def intl():
+    return render_temp('project/user/main/intl.html')
 
 
-#【Sign up】Form page to enter user info and request confirmation
+#【Sign up】Sign up
 @user_bp.route('/signup', methods=['GET', 'POST'])
 @is_logged_in
 def signup():
@@ -184,19 +184,12 @@ def signup():
         subject = "【Log Base】Please confirm your email !"
         token = signup_token(form)
         url = url_for('user.confirm_signup', token=token, _external=True)
-        html = render_temp('user/email/request_user_account.html', url=url)
+        html = render_temp('project/user/email/confirm_user_account.html', url=url)
         send_email(form.email.data, subject, html)
-        flash("ok!")
-        return redirect(url_for('user.signup_mail_sent', email=form.email.data))
+        flash(f"We sent a user authentication email to [ {form.email.data} ]. Activate your account via the email.")
+        return redirect(url_for('user.intl'))
 
-    return render_temp('user/contents/auth/signup.html', 'Sign Up', form)
-
-
-#【Sign up】Notice page of emailing the confirmation
-@user_bp.route('/signup_mail_sent/<email>')
-@is_logged_in
-def signup_mail_sent(email):
-    return render_temp('user/contents/notice/email_sent.html', 'Signup Mail Sent', email=email)
+    return render_temp('project/user/main/auth.html', 'Sign Up', form)
 
 
 #【Sign up】Confirm a request to create user account
@@ -212,18 +205,17 @@ def confirm_signup(token):
     db.session.add(user_to_add)
     db.session.commit()
     set_user_session(user_to_add)
-    flash('You got your account and logged in!')
-
+    flash('Your account was successfully activated! Now you have access to all LogBase features.')
     return redirect(url_for('user.index'))
 
 
-#【Log In】Form page
+#【Log In】
 @user_bp.route('/login', methods=['GET', 'POST'])
 @is_logged_in
 def login():
-    form = user_form(['pl_info', 'psw'])
+    form = user_form(['pl_info', 'psw'])  #! pl て分かりにくない？
 
-    if form.validate_on_submit():
+    if form.validate_on_submit(): #! search_user() name, email統一できる？
         user_to_login = search_user(form.pl_info.data, form.pl_info.data)
 
         if user_to_login and user_to_login.verify_password(form.psw.data):
@@ -231,18 +223,22 @@ def login():
             return redirect(url_for('user.index'))
         return redirect(url_for('user.login'))
 
-    return render_temp('user/contents/auth/login.html', 'Log In', form)
+    return render_temp('project/user/main/auth.html', 'Log In', form)
 
 
-# Log out
+#【Log out】
 @user_bp.route('/logout')
 @login_required
 def logout():
     clear_user_session()
-    return redirect(url_for('user.entry'))
+    return redirect(url_for('user.intl'))
 
 
-#【Password Reset】Form page to email authentication to the reset page
+
+
+# Views for BOTH authorized and unauthorized users  ---------------------
+
+#【Password Reset】
 @user_bp.route('/forgot_password', methods=['GET', 'POST'])
 @is_logged_in
 def forgot_password():
@@ -258,40 +254,31 @@ def forgot_password():
 
         subject = "【Log Base】Please confirm your email !"
         token = psw_reset_token(email)
-        url = url_for('user.confirm_password_reset_request', token=token, _external=True)
-        html = render_temp('user/email/request_password_reset.html', url=url)
+        url = url_for('user.confirm_password_reset', token=token, _external=True)
+        html = render_temp('project/user/email/confirm_password_reset.html', url=url)
         send_email(email, subject, html)
-        form.email.data = ''
-        return redirect(url_for('user.password_reset_request_sent', email=email))
+        flash(f"We sent a confirmation email to [ {email} ]. Confirm the email to reset the password for your account.")
+        return redirect(url_for('user.intl'))
 
     return render_temp(
-        'user/contents/auth/request_password_reset.html',
-        'Email Authentication', form)
-
-
-#【Password Reset】Notice page of emailing the authentication
-@user_bp.route('/password_reset_request_sent/<email>')
-@is_logged_in
-def password_reset_request_sent(email):
-    return render_temp(
-        'user/contents/notice/email_sent.html',
-        'Sent Password Reset Request',
-        email=email)
+        'project/user/main/auth.html',
+        'Forgot Password?', form)
 
 
 #【Password Reset】Inspect a received token and go to the reset page 
-@user_bp.route('/confirm_password_reset_request/<token>')
+@user_bp.route('/confirm_password_reset/<token>')
 @is_logged_in
-def confirm_password_reset_request(token):
+def confirm_password_reset(token):
     data = decode_token(token)
     return redirect(url_for(
         'user.reset_password', email=data['email']))
 
 
-#【Password Reset】Form page to reset password
+#! tokenの時間制限。。。役割果たしてる？
+#! パスワへんこうできんくね？
+#*【Password Reset】Form page to reset password 
 @user_bp.route('/reset_password/<email>', methods=['GET', 'POST'])
 @is_logged_in
-# @authentication_required('reset_psw')
 def reset_password(email):
     form = user_form(['psw_conf'])
 
@@ -300,43 +287,37 @@ def reset_password(email):
         user = search_user(email=email)
         if user:
             user.password = form.psw.data
+            user.name = "ken"
             db.session.commit()
-            flash('New password was successfully set!')
-            form.psw.data = ''
-            return redirect(url_for('user.password_reset_completed'))
+            # flash('Your new password was successfully set!')
+            psw = user.verify_password(form.psw.data)
+            flash(f'{psw}')
+            return redirect(url_for('user.intl'))
 
     return render_temp(
-        'user/contents/profile/reset_password.html',
+        'project/user/main/auth.html',
         'Reset Passoword', form)
 
 
-#【Password Reset】Notice page of completing resetting password
-@user_bp.route('/password_reset_completed')
-@is_logged_in
-# @authentication_required('reset_psw')
-def password_reset_completed():
-    return render_temp('user/contents/notice/notice.html', 'Password Reset Completed')
 
 
+# Views for authorized users -------------------------------------------
 
-
-# Views for Logged-In Activities-----------------------------------------
-
-# Top
+#* Top
 @user_bp.route('/')
 @login_required
 def index():
-    return render_temp('user/contents/main/index.html', 'LOG BASE')
+    return render_temp('project/user/main/index.html', 'LOG BASE')
 
 
-# Add channel
+#* Add channel
 @user_bp.route('/add_channel')
 @login_required
 def add_channel():
     return render_temp('user/contents/main/add_channel.html', 'Add Channel')
 
 
-# Search channel
+#* Search channel
 @user_bp.route('/search')
 @login_required
 def search():
@@ -344,21 +325,21 @@ def search():
 
 
 
-# Settings
+#* Settings
 @user_bp.route('/config')
 @login_required
 def config():
     return render_temp('user/contents/setting/config.html', 'Settings')
 
 
-# Profile
+#* Profile
 @user_bp.route('/profile')
 @login_required
 def profile():
     return render_temp('user/contents/profile/profile.html', 'Profile', user=g.user)
 
 
-# Password Authentication
+#* Password Authentication
 @user_bp.route('/profile/<dest>/auth', methods=['GET', 'POST'])
 @login_required
 def password_auth(dest):
@@ -375,7 +356,7 @@ def password_auth(dest):
     return render_temp('user/contents/auth/request_profile_update.html', 'Profile / Authentication', form)
 
 
-# Update Name & Email
+#* Update Name & Email
 @user_bp.route('/profile/basic_info', methods=['GET', 'POST'])
 @login_required
 @authentication_required('update_info', 'user.basic_info')
@@ -396,7 +377,7 @@ def basic_info():
     return render_temp('user/contents/profile/update_basic_info.html', 'Profile / Basic Info', form)
 
 
-# Alter Password
+#* Alter Password
 @user_bp.route('/profile/password', methods=['GET', 'POST'])
 @login_required
 @authentication_required('update_info', 'user.password')

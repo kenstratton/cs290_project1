@@ -1,0 +1,51 @@
+{% extends 'project/admin/layout.html' %}
+
+{% block main %}
+
+<div class="l-main__section">
+    <div class="content">
+        <h1 class="l-main__section-header">User List</h1>
+        <div id="table_frame">
+            <div class="">
+                <div class="u-dn-tab">
+                    <!-- <p>Data Format</p> -->
+                    <div class="col-sp-12 col-tab-3">Name</div>
+                    <div class="col-sp-12 col-tab-3">Email</div>
+                    <div class="col-sp-12 col-tab-3">Created Date</div>
+                    <div class="col-sp-12 col-tab-3">Delete Button</div>
+                </div>
+                <div class="">
+                    {% for user in users %}
+                    <div class=" row">
+                        <div class="col-tab-3 col-sp-4">
+                            <p class="u-dn-tab">Name : </p>
+                            {% if user.admin == true %}
+                            <span>Administrator</span>
+                            {% elif user.master == true %}
+                            <span>Administrator</span>
+                            {% else %}
+                            {{user.name}}
+                            {% endif %}
+                        </div>
+                        <div class="col-tab-3">
+                            <p class="u-dn-tab">Email : </p>
+                            {{user.email}}
+                        </div>
+                        <div class="col-tab-3">
+                            <p class="u-dn-tab">Created Date : </p>
+                            {{user.date_added.strftime('%Y/%m/%d %H:%M')}}
+                        </div>
+                        <div class="col-tab-3">
+                            {% if user.admin == true %}
+                            <a href="{{ url_for('admin.delete_user', id=user.id)}}">delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

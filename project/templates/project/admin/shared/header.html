@@ -1,0 +1,58 @@
+<!-- header.html -->
+
+{% if title not in ['Log In'] %}
+<header class="l-header c-flex-wrapper--row">
+    <div class="l-header__wrap">
+    <a href="{{url_for('admin.index')}}" id="l-header__home-entry"><h3>Admin</h3></a>
+    <div id="l-header__mainmenu-toggler" class="toggler u-dn-pc">
+        <div id="l-header__mainmenu-opener" class="c-btn--quad c-btn--hover-bg-primary">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div id="l-header__mainmenu-closer" class="c-btn--quad c-btn--hover-bg-primary">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    </div>
+    <ul id="l-header__mainmenu" class="u-non-anim-pc">
+        <!-- <li class="l-header__mainmenu-item">
+            <div id="l-header__top-entry" class="l-header__main-layer-entry">トップ</div>
+        </li> -->
+        <li class="l-header__mainmenu-item">
+            <div class="l-header__submenu-toggler toggler">
+            <p>User</p>
+            <div class="l-header__submenu-arrow u-dn-pc"></div>
+            </div>
+            <ul class="l-header__submenu tgl-reactor">
+                <li>
+                    <a href="{{url_for('admin.add_user')}}" class="l-header__sub-layer-entry">
+                        <div class="l-header__submenu-pilar-icon"></div>
+                        <div>
+                            <p class="l-header__submenu-item-title">Add User</p>
+                            <p class="l-header__submenu-item-detail">ユーザーを追加します</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url_for('admin.user_list')}}" class="l-header__sub-layer-entry">
+                        <div class="l-header__submenu-pilar-icon"></div>
+                        <div>
+                            <p class="l-header__submenu-item-title">User List</p>
+                            <p class="l-header__submenu-item-detail">現存のユーザーを一覧表示します</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="l-header__flash-wrap">
+        {% for message in get_flashed_messages() %}
+        <div class="l-header__flash-message">
+            <p>{{message}}</p>
+            <button class="l-header__flash-closer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+</header>
+{% endif %}

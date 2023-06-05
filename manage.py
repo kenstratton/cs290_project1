@@ -25,15 +25,15 @@ def drop_db():
     db.drop_all()
 
 
-@manager_cli.command('create_admin')
+@manager_cli.command('create_master')
 def create_admin():
-    """Creates the admin user."""
+    """Creates a master user."""
     db.session.add(
         User(
-            email=os.environ['ADMIN_MAIL'],
-            password=os.environ['ADMIN_PASSWORD'],
+            email=os.environ['MASTER_MAIL'],
+            password=os.environ['MASTER_PASSWORD'],
             admin=True,
-            confirmed=True)
+            master=True)
     )
     db.session.commit()
 

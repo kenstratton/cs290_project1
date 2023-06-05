@@ -12,12 +12,13 @@
  * MediaQuery..........メディアクエリ時に使用する変数
 
   ▼ 自作の変数
- * Color...............プロジェクト内で使用される色の変数
- * 
- * 
- * 
- * 
- * 
+ * Color...............色の変数 (font, bg, btn, border)
+ * Font................fontの変数(size, family)
+ * Line height.........line-heightのサイズを定める変数
+ * Border..............borderのサイズを定める変数
+ * Spacing.............要素の外/内側に設ける空間を定める変数(margin, padding)
+ * Layout..............Layout配下の要素で、操作を受けやすいプロパティ値を変数化
+ * Project.............Project配下の要素で、操作を受けやすいプロパティ値を変数化
  * 
  * 
  * 
@@ -62,54 +63,177 @@ col
 /*  #Color  ---------------------------------------------*/
 
 // 各色の変数
-$blue:     #0d6efd !default;
-$pink:     #d63384 !default;
-$red:      #dc3545 !default;
-$orange:   #fd7e14 !default;
-$yellow:   #ffc107 !default;
-$green:    #198754 !default;
-$teal:     #20c997 !default;
-$cyan:     #0dcaf0 !default;
-$white:    #fff !default;
-$black:    #111!default;
+$blue:       #0d6efd !default;
+$pink:       #d63384 !default;
+$red:        #dc3545 !default;
+$orange:     #fd7e14 !default;
+$yellow:     #ffc107 !default;
+$green:      #198754 !default;
+$teal:       #20c997 !default;
+$cyan:       #0dcaf0 !default;
+$white:      #fff !default;
+$black:      #1b1b1b!default;
 
-$gray-xl:   #bbb !default;
-$gray-l:    #999 !default;
-$gray-md:   #777 !default;
-$gray-h:    #555 !default;
-$gray-xh:   #333 !default;
-$gray: (
-  xl: $gray-xl,
-  l: $gray-l,
-  md: $gray-md,
-  h: $gray-h,
-  xh: $gray-xh,
-) !default;
+$gray-2xl:   #ddd !default;
+$gray-xl:    #bbb !default;
+$gray-l:     #999 !default;
+$gray-md:    #777 !default;
+$gray-h:     #666 !default;
+$gray-xh:    #555 !default;
+$gray-2xh:   #333 !default;
 
 // フォントの色
 $font-colors: (
-  "header":     $white,
-  "error":      $red,
-  "f":       $blue,
-  "ff":       $pink,
+  "primary":       $white,
+  "secondary":     $gray-xl,
+  "white-back":    $black,
+  "info":          $red,
+  "alert":         $red,
+  "danger":        $red,
+  "light":         $red,
+  "dark":          $red,
 ) !default;
 
 // 背景の色
 $bg-colors: (
-  "body": map-get($gray, xl),
-  "secondary": map-get($gray, md),
-  "tertiary": map-get($gray, xl)
+  "primary":        $black,
+  "secondary":      $gray-2xh,
+  "tertiary":       $gray-h,
+  "index-modal":    $gray-2xl,
 ) !default;
 
 // ボタンの色
-$btn-colors: (
-  "primary": #337AB7,
-  "secondary": #5CB85C,
-  "tertiary": #F0AD4E
+$btn-bg-colors: (
+  "primary":       $gray-xh,
+  "secondary":     $gray-l,
+  "white-back":     $black,
 ) !default;
 
-@each $key, $value in $btn-colors {
-  .btn-#{$key} {
-    background-color: $value;
-  }
-}
+$border-colors: (
+  "primary":       $gray-xl,
+  "secondary":     $gray-2xl,
+  "white-back":    $black,
+) !default;
+
+
+/*  #Font  ---------------------------------------------*/
+$font-size-base:           1rem !default;
+$font-size-2xsm:           $font-size-base * 0.62 !default;
+$font-size-xsm:            $font-size-base * 0.72 !default;
+$font-size-sm:             $font-size-base * 0.82 !default;
+$font-size-md:             $font-size-base * 1 !default;
+$font-size-lg:             $font-size-base * 1.2 !default;
+$font-size-xlg:            $font-size-base * 1.4 !default;
+$font-size-2xlg:           $font-size-base * 1.8 !default;
+
+$font-size: (
+  "primary":               $font-size-sm,
+  "secondary":             $font-size-xsm,
+  "title-primary":         $font-size-xlg,
+  "title-secondary":       $font-size-lg,
+  "title-tertiary":        $font-size-md,
+  "title-quaternary":      $font-size-sm,
+  "link-primary":          $font-size-md,
+  "btn-icon":              $font-size-sm,
+  "label":                 $font-size-md,
+  "input":                 $font-size-sm,
+  "note":                  $font-size-2xsm,
+  "date":                  $font-size-2xsm,
+  "copy-right":            $font-size-xsm,
+) !default;
+
+/*  #Line height  ---------------------------------------------*/
+$lineheight-base:          1rem !default;
+$lineheight-half:         $lineheight-base * 1 !default;
+$lineheight-md:           $lineheight-base * 1.5 !default;
+$lineheight-double:       $lineheight-base * 2 !default;
+$lineheight-size: (
+  "half":                  1.5rem,
+  "double":                $lineheight-double,
+) !default;
+
+
+/*  #Border  ---------------------------------------------*/
+$border-size-base:      1px !default;
+$border-size-sm:        $border-size-base * 0.5 !default;
+$border-size-md:        $border-size-base * 1 !default;
+
+$border: (
+  "primary":            $border-size-md solid map-get($border-colors, primary),
+  "primary-sm":         $border-size-sm solid map-get($border-colors, primary),
+  "secondary":          $border-size-md solid map-get($border-colors, secondary),
+  "secondary-sm":       $border-size-sm solid map-get($border-colors, secondary),
+  "white-back":         $border-size-md solid map-get($border-colors, white-back),
+) !default;
+
+$border-radius-base:    1rem !default;
+$border-radius-sm:      $border-radius-base * 0.3 !default;
+$border-radius-md:      $border-radius-base * 0.5 !default;
+$border-radius-lg:      $border-radius-base * 0.7 !default;
+
+$border-radius-size: (
+  "primary":            $border-radius-sm,
+) !default;
+
+/*  #Space (padding / margin)  ---------------------------------------------*/
+$space-base:          1rem !default;
+$space-2xsm:          $space-base * 0.3 !default;
+$space-xsm:           $space-base * 0.5 !default;
+$space-sm:            $space-base * 0.7 !default;
+$space-md:            $space-base * 1 !default;
+$space-lg:            $space-base * 1.5 !default;
+$space-xlg:           $space-base * 2 !default;
+$space-2xlg:          $space-base * 3 !default;
+$space-3xlg:          $space-base * 4 !default;
+$space-auto:          auto !default;
+
+
+/*  #Layout  -----------------------------------------------------------------*/
+// Header
+$header-base-height:          60px !default;
+$header-border-size:          $border-size-md !default;
+$header-container-height:     $header-base-height - $header-border-size !default;
+$l-header: (
+  "base-height":              $header-base-height,
+  "container-height":         $header-container-height,
+  "border":                   $header-border-size solid $gray-xl,
+) !default;
+
+// Main
+$main-content-width:          85% !default;
+$main-content-maxwidth:       1000px !default;
+$l-main: (
+  "content-width": $main-content-width,
+  "content-maxwidth": $main-content-maxwidth,
+) !default;
+
+// Footer
+$l-footer: (
+  "height":                   60px,
+  "padding":                  0 $space-2xlg,
+) !default;
+
+/*  #Project   ---------------------------------------------------------------*/
+// index
+$p-index: (
+  // "header-font-size":         $font-size-2xlg,
+  "header-font-size":         $font-size-2xlg,
+  "txt-font-size":            $font-size-sm,
+) !default;
+
+$p-index-top: (
+
+) !default;
+
+$p-index-about: (
+  "bg-color":                 $gray-md,
+) !default;
+
+$p-index-func-modal-height-base:     100% !default;
+$p-index-func-modal-maxheight:       $p-index-func-modal-height-base * 0.88 !default;
+$p-index-func-modal-top-pos:         ($p-index-func-modal-height-base - $p-index-func-modal-maxheight) / 2;
+$p-index-func: (
+  "bg-color":                 map-get($bg-colors, index-modal),
+  "modal-maxheight":          $p-index-func-modal-maxheight,
+  "modal-top-pos":            $p-index-func-modal-top-pos,
+) !default;

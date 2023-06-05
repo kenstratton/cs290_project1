@@ -6,20 +6,20 @@ import jwt
 
 # Return a token for confirmation of signup
 def signup_token(form, expiration=3600):
-    return jwt.encode({'name'     : form.name.data,
-                       'email'    : form.email.data,
-                       'psw' : form.psw.data,
-                       'exp'      : time() + expiration},
-                       app.config['SECRET_KEY'],
-                       algorithm='HS256')
+    return jwt.encode({'name'   : form.name.data,
+                        'email' : form.email.data,
+                        'psw'   : form.psw.data,
+                        'exp'   : time() + expiration},
+                        app.config['SECRET_KEY'],
+                        algorithm='HS256')
 
 
 # Return a token for authentication to the password reset page
 def psw_reset_token(email, expiration=1800):
     return jwt.encode({'email' : email,
-                       'exp'   : time() + expiration},
-                       app.config['SECRET_KEY'],
-                       algorithm='HS256')
+                        'exp'  : time() + expiration},
+                        app.config['SECRET_KEY'],
+                        algorithm='HS256')
 
 
 # Return data of a decoded token after checking its validity

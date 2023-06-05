@@ -1,0 +1,11 @@
+// _footer.scss
+
+.l-footer {
+  height: map-get($l-footer, height);
+  padding: map-get($l-footer, padding);
+  line-height: map-get($l-footer, height);
+}
+
+.l-footer__copy-light-txt {
+  font-size: map-get($font-size, copy-right);
+}

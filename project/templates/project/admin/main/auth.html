@@ -1,0 +1,32 @@
+<!-- auth.html -->
+
+{% extends 'project/user/layout.html' %}
+
+{% block main %}
+
+<div class="l-main__section">
+    <div class="content">
+        <h1 class="l-main__section-header">ADMIN {{title}}</h1>
+        <form method="POST" id="user_form" class="p-auth__form" novalidate>
+            {{ form.hidden_tag() }}
+            
+            {{ form.email.label(class="p-auth__input-label") }}
+            <p class="p-auth__error-msg" id="error_email" data-error="{{form.is_valid('email')}}">
+                {{form.email.errors[0]}}
+            </p>
+            {{ form.email(class="p-auth__input", placeholder="email@address.com") }}
+
+
+            {{ form.psw.label(class="p-auth__input-label") }}
+            <p class="p-auth__error-msg" id="error_psw" data-error="{{form.is_valid('psw')}}">
+                {{form.psw.errors[0]}}
+            </p>
+            {{ form.psw(class="p-auth__input", placeholder="Password") }}
+
+
+            {{ form.submit(class='p-auth__submit c-btn--submit c-btn--bg-primary c-btn--hover-bg-secondary') }}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

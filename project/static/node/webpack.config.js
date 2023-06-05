@@ -6,6 +6,7 @@ const path  = require('path');
 //* Webpackプラグイン
 // バンドルしたJavaScriptからスタイルシートの箇所をcssファイルとして出力する
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 // 指定ファイルをコピーして出力(出力元と先を合わせる)
 //! const CopyPlugin = require('copy-webpack-plugin');
 // 画像を圧縮する
@@ -46,9 +47,9 @@ module.exports = (env, argv) => {
     context: path.join(__dirname, "/src"),
 
     // webpackがビルドを始める際の開始点(default = ./src/index.js)
-    // 複数をまとめてバンドルする場合 [ "./index.js", "./sub.js" ... ]
+    // 複数をまとめてバンドルする場合 entry: [ "./index.js", "./sub.js" ... ]
     // -> (output) filename: "bundle.js"
-    // 複数をそれぞれバンドルする場合 { main: "./sub.js", sub: "./sub.js"}
+    // 複数をそれぞれバンドルする場合 entry: { main: "./sub.js", sub: "./sub.js"}
     // -> (output) filename: "[name].bundle.js" [name]はエントリーポイント名がくる
     entry: './js/index.js',
 
@@ -61,15 +62,17 @@ module.exports = (env, argv) => {
       path: `${__dirname}/dist`,
       // 出力ファイル名 + 出力先の設定
       filename: (isProduction && "./js/main.min.js") || (isProduction || "./js/main.js"),
+      // filename: (isProduction && "./js/main.min.js") || (isProduction || "./js/main.js"),
       // assetファイルの出力先設定
       assetModuleFilename: "img/[name][ext]'",
       // 出力ファルダ内のファイルを全て削除してから出力({keep: 保護ファイル})
-      clean: true
+      // clean: true
+      clean: {keep: /ignored\/js\//}
     },
 
     // トランスパイルの対象となるファイルの拡張子を指定
     resolve: {
-      extensions: ['*', '.webpack.js', '.js']
+      extensions: ['.*', '.webpack.js', '.js']
     },
 
     // watch: ファイル変更を監視し、自動でリビルド
@@ -83,13 +86,14 @@ module.exports = (env, argv) => {
     optimization: {
       // minimize: 出力ファイルの圧縮(dflt = dev: false, prod: true)
       minimize: isProduction
+      // extractComments: 'all',
     },
 
     // ローダーなどのモジュールを設定
     module: {
       // 配列の各要素に各ローダーのルールを設定
       rules: [
-        // JSのトランスパイル(レガシーブラウザ対応のため)
+        // JSのトランスパイル(レガシーブラウザ対応のため 例: ES5以前はconst letがなくvarのみ)
         {
           // test: 正規表現で対象ファイルを指定
           test: /\.js$/,
@@ -138,9 +142,9 @@ module.exports = (env, argv) => {
                         // サポートするブラウザを指定
                         browsers: "last 2 versions, > 0.5%, not dead",
                         // ポリフィルする CSS 機能を決定(stage 0 through 4)
-                        // stage: 3,
+                        //   例：stage: 3,
                         // 特定のCSS機能を有効
-                        // features: {"nesting-rules": 3},
+                        //   例：features: {"nesting-rules": 3},
                         // ベンダープレフィックスを自動付与
                         autoprefixer: { grid: true },
                       },
@@ -160,7 +164,10 @@ module.exports = (env, argv) => {
             },
 
             // sass-loader - SassをCSSに変換かつjsにバンドル
-            { loader: 'sass-loader' }
+            { loader: 'sass-loader' },
+
+            // 指定フォルダ配下のSassファイル全てを読み込ませる記述が可能 (@import "layout/**";)
+            {loader: 'import-glob-loader'}
           ]
         },
 
@@ -194,6 +201,7 @@ module.exports = (env, argv) => {
 
     // プラグイン
     plugins: [
+      new RemoveEmptyScriptsPlugin(),
       // バンドルしたjsからスタイルシート箇所を別cssファイルとして出力(早い段階で適用させるため)
       new MiniCssExtractPlugin({
         // 出力先の設定

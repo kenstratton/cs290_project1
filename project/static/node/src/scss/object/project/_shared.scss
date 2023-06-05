@@ -1,0 +1,28 @@
+// _shared.scss
+
+// モーダル起動時用のスタイルです ----------------------------------------
+#body {
+  &[data-status="on"] {
+    overflow: hidden;
+  }
+  &[data-status="off"] {
+    overflow: visible;
+  }
+}
+
+#modal-overlay {
+  display: none;
+  opacity: 0.3;
+  position: fixed;
+  top: 0;
+  z-index: 6;
+  height: 100%;
+  width: 100%;
+  background-color: $black;
+  &[data-status="on"] {
+    display: block;
+  }
+  &[data-status="off"] {
+    display: none;
+  }
+}

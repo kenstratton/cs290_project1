@@ -1,11 +1,65 @@
+//_utility.scss
+
+// 該当のデバイス画角に対応するdisplay:noneです -------------------------------------
+
+//Smartphone(sp)
 .u-dn-sp {
- @include mq(sp) {
-   display: none;
- }
+  @include mq(sp) {
+    display: none !important;
+  }
 }
 
+//Tablet(tab)
+.u-dn-tab {
+  @include mq(tab-less) {
+    display: none !important;
+  }
+}
+
+// PC(pc)
 .u-dn-pc {
- @include mq(pc) {
-   display: none;
- }
+  @include mq(pc) {
+    display: none !important;
+  }
+}
+
+
+// 該当のデバイス画角に対応してアニメーションを無効にします -----------------------------
+
+//Smartphone(sp)
+.u-non-anim-sp {
+  @include mq(sp) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+//Tablet(tab)
+.u-non-anim-tab {
+  @include mq(tab-less) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+// PC(pc)
+.u-non-anim-pc {
+  @include mq(pc) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+// その他 ----------------------------------------------------------------------
+
+// マウスカーソルの形をポインター型にします //! つかってねー
+.u-pointer { cursor: pointer; }
+
+// 画面更新後に起こる、アニメーションの誤挙動を制御します(src/js/preloadm.jsありき)
+.u-preload { display: none; }
+
+// アイコン等を含むテキストの並びを並行にします
+.u-txt-opt {
+  display: flex;
+  align-items: center;
 }

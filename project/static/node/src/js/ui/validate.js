@@ -1,4 +1,4 @@
-(() => {
+// validate.js
 
 // Change input form designs at the Admin > Add User page
 var change_form_design = () => {
@@ -21,5 +21,3 @@ var change_form_design = () => {
 };
 
 change_form_design();
-
-})();

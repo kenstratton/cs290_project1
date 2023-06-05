@@ -1,0 +1,44 @@
+// ボタンのベースです
+.c-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 $space-2xsm;
+  font-size: $font-size-md;
+  color: inherit;
+  cursor: pointer;
+  > i { // FontAwesome経由のiconを中央に
+    margin: auto;
+  }
+}
+
+// background-color付きのボタンです
+@each $key, $value in $btn-bg-colors {
+  .c-btn--bg-#{$key} {
+    @extend .c-btn;
+    background-color: $value;
+  }
+  .c-btn--hover-bg-#{$key}{
+    @extend .c-btn;
+    border: map-get($border, "#{$key}");
+    @include hover() {
+      background-color: $value;
+      @if $key == "white-back" {
+        color: map-get($font-colors, primary);
+      }
+    }
+  }
+}
+
+// 四角形のボタンです
+.c-btn--quad {
+  @extend .c-btn;
+  min-height: 34px;
+  min-width: 34px;
+  border-radius: map-get($border-radius-size, primary);
+}
+
+.c-btn--submit {
+  @extend .c-btn--quad;
+  padding: 0 4rem;
+}

@@ -19,16 +19,19 @@ admin_bp = Blueprint('admin', __name__,)
 def clear_admin_session():
     session.pop('admin', None)
 
+
 # Set session for user entry
 def set_admin_session():
     session['admin'] = True
     session['admin_lifetime'] = time() + 3600
+
 
 # Check session status of admin
 def is_admin_in_session():
     if 'admin' in session:
         return True
     return False
+
 
 # Check the login status of a user
 def check_admin_lifetime():
@@ -74,11 +77,21 @@ def is_logged_in(view):
     return censored_view
 
 
+# Render a template with specifickeywords
+def render_temp(path, title=None, form=None, **kwrgs):
+    return render_template(
+        path,
+        title=title,
+        form=form,
+        **kwrgs
+        )
+
+
 
 
 # Admin pages ---------------------------------------------
 
-# Login page
+#【Login】
 @admin_bp.route('/admin/login', methods=['GET', 'POST'])
 @is_logged_in
 def login():
@@ -88,31 +101,36 @@ def login():
         admin = User.query.filter_by(email=form.email.data).first()
         if admin and admin.verify_password(form.psw.data):
             set_admin_session()
-            return redirect(url_for('admin.admin'))
+            return redirect(url_for('admin.index'))
         form.email.data = ''
 
-    return render_template(
-        'admin/admin.html', type='login_form', title='Admin / Log In', form=form, login=False)
+    return render_temp('project/admin/main/auth.html', 'Log In', form)
 
 
-# Logout
+#【Logout】
 @admin_bp.route('/admin/logout')
 @login_required
 def logout():
     clear_admin_session()
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.login'))
 
 
-# Top page
+#【Top】
 @admin_bp.route('/admin')
 @login_required
-def admin():
+def index():
+    return render_temp('project/admin/main/index.html')
+
+
+#【User Management】User List
+@admin_bp.route('/admin/user_list')
+@login_required
+def user_list():
     users = User.query.order_by(User.date_added)
-    return render_template(
-        'admin/admin.html', type='top', title='Admin', users=users, login=True)
+    return render_temp('project/admin/main/user_list.html', 'Add User', users=users)
 
 
-# Add User
+#【User Management】Add user
 @admin_bp.route('/admin/add_user', methods=['GET', 'POST'])
 @login_required
 def add_user():
@@ -135,10 +153,10 @@ def add_user():
         else:
             flash(f"User <{existing_user.name}> alerady exists!")
 
-    return render_template(
-        'admin/admin.html', type='add_user', title='Admin / Add User', form=form, login=True)
+    return render_temp('project/admin/main/add_user.html', 'Add User', form)
 
 
+#【User Management】Delete user
 @admin_bp.route('/admin/delete_user/<int:id>')
 @login_required
 def delete_user(id):
@@ -152,4 +170,4 @@ def delete_user(id):
     except:
         flash('Woops!! There was a problem deleting a user. Try again...')
 
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.index'))

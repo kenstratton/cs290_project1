@@ -24,6 +24,7 @@
     "imagemin-pngquant": "^9.0.2",
     "imagemin-svgo": "^10.0.1",
     "imagemin-webpack-plugin": "^2.4.2",
+    "import-glob-loader": "^1.1.0",
     "mini-css-extract-plugin": "^2.7.2",
     "moment-locales-webpack-plugin": "^1.2.0",
     "postcss": "^8.4.20",
@@ -33,9 +34,11 @@
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^5.0.0",
+    "webpack-remove-empty-scripts": "^1.0.3"
   },
   "dependencies": {
+    "@splidejs/splide": "^4.1.4",
     "bootstrap": "^5.2.3",
     "chart.js": "^2.9.4"
   },
