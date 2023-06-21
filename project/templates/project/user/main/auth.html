@@ -7,73 +7,69 @@
 <div class="l-main__section">
     <div class="content">
         <div class="l-main__link-section">
-            <a href="{{url_for('user.intl')}}" class="u-txt-opt">
+            <a href="{{url_for('user.entry.entry')}}" class="u-txt-opt">
                 <i class="fa-solid fa-angles-left"></i>
-                <p class="l-main__link-section-text">Back</p>
+                <p class="l-main__link-section-text">Home</p>
             </a>
             {% if title in ['Sign Up'] %}
-            <a href="{{url_for('user.login')}}" class="u-txt-opt">
+            <a href="{{url_for('user.entry.login')}}" class="u-txt-opt">
                 <p class="l-main__link-section-text">Log In</p>
                 <i class="fa-solid fa-angle-right"></i>
             </a>
             {% elif title in ['Log In'] %}
-            <a href="{{url_for('user.signup')}}" class="u-txt-opt">
+            <a href="{{url_for('user.entry.signup')}}" class="u-txt-opt">
                 <p class="l-main__link-section-text">Sign Up</p>
                 <i class="fa-solid fa-angle-right"></i>
             </a>
             {% endif %}
         </div>
         <h1 class="l-main__section-header">{{title}}</h1>
-        <form method="POST" id="user_form" class="p-auth__form" novalidate>
+        <form method="POST" id="user_form" class="p-form__wrap" novalidate>
             {{ form.hidden_tag() }}
 
             {% if title in ['Sign Up'] %}
-                {{ form.name.label(class="p-auth__input-label") }}
-                <p class="p-auth__error-msg" id="error_name" data-error="{{form.is_valid('name')}}">
+                {{ form.name.label(class="p-form__input-label") }}
+                <p class="p-form__error-msg" id="error_name" data-error="{{form.is_valid('name')}}">
                     {{form.name.errors[0]}}
                 </p>
-                {{ form.name(class="p-auth__input", placeholder="Nickname") }}
+                {{ form.name(class="p-form__input", placeholder="Nickname") }}
             {% endif %}
 
 
-            {% if title in ['Sign Up', 'Forgot Password?'] %}
-                {{ form.email.label(class="p-auth__input-label") }}
-                <p class="p-auth__error-msg" id="error_email" data-error="{{form.is_valid('email')}}">
+            {% if title in ['Sign Up', 'Log In', 'Forgot Password?'] %}
+                {{ form.email.label(class="p-form__input-label") }}
+                <p class="p-form__error-msg" id="error_email" data-error="{{form.is_valid('email')}}">
                     {{form.email.errors[0]}}
                 </p>
-                {{ form.email(class="p-auth__input", placeholder="email@address.com") }}
-            {% endif %}
-
-
-            {% if title in ['Log In'] %}
-                {{ form.pl_info.label(class="p-auth__input-label") }}
-                <p class="p-auth__error-msg" id="error_name" data-error="{{form.is_valid('pl_info')}}">
-                    {{form.pl_info.errors[0]}}</p>
-                {{ form.pl_info(class="p-auth__input", placeholder="Nickname / email@address.com") }}
+                {{ form.email(class="p-form__input", placeholder="email@address.com") }}
             {% endif %}
 
 
             {% if title in ['Sign Up', 'Log In', 'Reset Passoword'] %}
-                {{ form.psw.label(class="p-auth__input-label") }}
-                <p class="p-auth__error-msg" id="error_psw" data-error="{{form.is_valid('psw')}}">
+                {{ form.psw.label(class="p-form__input-label") }}
+                <button id="p-form__password-visualizer" type="button">
+                    <i class="fa-solid fa-eye-slash"></i>
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <p class="p-form__error-msg" id="error_psw" data-error="{{form.is_valid('psw')}}">
                     {{form.psw.errors[0]}}
                 </p>
-                {{ form.psw(class="p-auth__input", placeholder="Password") }}
+                {{ form.psw(class="p-form__input", placeholder="Password") }}
             {% endif %}
 
 
             {% if title in ['Sign Up', 'Reset Passoword'] %}
-                {{ form.conf.label(class="p-auth__input-label") }}
-                {{ form.conf(class="p-auth__input", placeholder="Password") }}
+                {{ form.conf.label(class="p-form__input-label") }}
+                {{ form.conf(class="p-form__input", placeholder="Password") }}
             {% endif %}
 
 
             {% if title in ['Log In'] %}
-                <a href="{{ url_for('user.forgot_password') }}">Forgot password ?</a>
+                <a href="{{ url_for('user.entry.forgot_password') }}">Forgot password ?</a>
             {% endif %}
 
 
-            {{ form.submit(class='p-auth__submit c-btn--submit c-btn--bg-primary c-btn--hover-bg-secondary') }}
+            {{ form.submit(class='p-form__submit c-btn--submit c-btn--bg-primary c-btn--hover-bg-secondary') }}
         </form>
     </div>
 </div>

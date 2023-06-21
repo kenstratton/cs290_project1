@@ -1,7 +1,6 @@
 <!-- header.html -->
 
-{% if title not in ['Log In'] %}
-<header class="l-header c-flex-wrapper--row">
+<header id="l-header" class="c-flex-wrapper--row">
     <div class="l-header__wrap">
     <a href="{{url_for('admin.index')}}" id="l-header__home-entry"><h3>Admin</h3></a>
     <div id="l-header__mainmenu-toggler" class="toggler u-dn-pc">
@@ -14,9 +13,6 @@
     </div>
     </div>
     <ul id="l-header__mainmenu" class="u-non-anim-pc">
-        <!-- <li class="l-header__mainmenu-item">
-            <div id="l-header__top-entry" class="l-header__main-layer-entry">トップ</div>
-        </li> -->
         <li class="l-header__mainmenu-item">
             <div class="l-header__submenu-toggler toggler">
             <p>User</p>
@@ -43,6 +39,23 @@
                 </li>
             </ul>
         </li>
+        <li class="l-header__mainmenu-item">
+            <div class="l-header__submenu-toggler toggler">
+                <p>Account</p>
+                <div class="l-header__submenu-arrow u-dn-pc"></div>
+                </div>
+                <ul class="l-header__submenu tgl-reactor">
+                    <li>
+                        <a href="{{url_for('admin.logout')}}" class="l-header__sub-layer-entry">
+                            <div class="l-header__submenu-pilar-icon"></div>
+                            <div>
+                                <p class="l-header__submenu-item-title">Logout</p>
+                                <!-- <p class="l-header__submenu-item-detail">使用中のアカウントからログアウトします</p> -->
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+        </li>
     </ul>
     <div class="l-header__flash-wrap">
         {% for message in get_flashed_messages() %}
@@ -55,4 +68,3 @@
         {% endfor %}
     </div>
 </header>
-{% endif %}

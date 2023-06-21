@@ -1,3 +1,7 @@
+// _wrapper.scss
+
+@use "../../foundation/tools/global" as *;
+
 .c-flex-wrapper { display: flex; }
 
 .c-flex-wrapper--center {

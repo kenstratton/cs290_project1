@@ -1,5 +1,7 @@
 // _main.scss
 
+@use "../foundation/tools/global" as *;
+
 .l-main { padding-top: map-get($l-header, base-height); }
 
 .l-main__section {
@@ -7,18 +9,24 @@
   justify-content: space-around;
   align-items: center;
   min-height: calc(100vh - (map-get($l-header, base-height) + (map-get($l-footer, height))));
+  padding: $space-2xlg 0;
+  border-bottom: 1px solid #bbb;
   > .content {
-    position: relative;
     width: map-get($l-main, content-width);
     max-width: map-get($l-main, content-maxwidth);
   }
+}
+
+.l-main:nth-child(1) { // headerが存在しない場合に画角を調節する
+  padding: 0;
+  .l-main__section { min-height: calc(100vh - (map-get($l-footer, height))); }
 }
 
 .l-main__section-header {
   text-align: center;
   margin-bottom: $space-lg;
   font-size: map-get($p-index, header-font-size);
-} 
+}
 
 .l-main__section-brief {
   text-align: center;
@@ -30,10 +38,9 @@
 .l-main__link-section {
   display: flex;
   justify-content: space-between;
-  font-size: 1rem;
   width: 100%;
-  position: absolute;
-  bottom: calc(100% + $space-2xlg);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
 }
 
 .l-main__link-section-text { margin: 0 $space-2xsm; }

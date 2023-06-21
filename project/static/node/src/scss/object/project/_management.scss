@@ -1,0 +1,22 @@
+// _management.scss
+
+@use "../../foundation/tools/global" as *;
+
+.p-management__section-brief { font-size: map-get($font-size, title-tertiary); }
+
+.p-management__code {
+  background: map-get($bg-colors, secondary);
+  border-radius: map-get($border-radius-size, primary);
+  padding: 0 $space-2xsm;
+}
+
+.p-management__notice-wrap {
+  width: fit-content;
+  margin: 0 auto;
+  padding: $space-md $space-lg;
+  border-left: map-get($border, notice-card);
+  border-radius: map-get($border-radius-size, primary);
+  font-size: map-get($font-size, card);
+  line-height: map-get($lineheight-size, double);
+  background-color: map-get($bg-colors, secondary);
+}

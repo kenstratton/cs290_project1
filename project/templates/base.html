@@ -6,11 +6,15 @@
         <script src="https://kit.fontawesome.com/c39d0aac49.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{{ url_for('static',filename='node/dist/css/main.min.css') }}" media="screen">
         <title>
-            {% block title %}{% endblock %}
+            {% block title %}Log Base{% endblock %}
         </title>
     </head>
     <body id="body">
-        {% block layout %}{% endblock %}
+        <script>
+        </script>
+        <div id="loading"><div class="loader"></div></div>
+        {% block layout %}
+        {% endblock %}
         <div id="modal-overlay" class="toggler"></div>
         <script src="/static/node/dist/ignored/js/variable.js"></script>
         <script src="/static/node/dist/js/main.js"></script>

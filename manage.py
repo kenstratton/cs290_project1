@@ -26,11 +26,11 @@ def drop_db():
 
 
 @manager_cli.command('create_master')
-def create_admin():
+def create_master():
     """Creates a master user."""
     db.session.add(
         User(
-            email=os.environ['MASTER_MAIL'],
+            email=os.environ['MASTER_EMAIL'],
             password=os.environ['MASTER_PASSWORD'],
             admin=True,
             master=True)

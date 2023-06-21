@@ -1,0 +1,52 @@
+// _user.scss
+
+@use "../../../foundation/tools/global" as *;
+
+// User List ---------------------------------------------
+// #p-user-list { }
+
+// .p-user-list__table {}
+
+.p-user-list__head-wrap {
+  text-align: center;
+  margin-bottom: $space-xsm;
+}
+
+.p-user-list__head {
+  font-weight: bold;
+  font-size: map-get($font-size, table-label-primary);
+}
+
+.p-user-list__user-info-list {
+  align-items: center;
+  margin-bottom: $space-xsm;
+  border-radius: map-get($border-radius-size, primary);
+  background-color: map-get($bg-colors, secondary)
+}
+
+.p-user-list__user-info-wrap {
+  display: flex;
+  padding: $space-2xsm $space-sm;
+  @include mq(sp) {
+    padding: 0 $space-sm $space-2xsm ;
+    &:first-child {
+      padding-top: $space-2xsm;
+    }
+  }
+}
+
+.p-user-list__user-info { margin: 0 auto; }
+
+.p-user-list__user-info--name {
+  margin: 0 auto;
+  @include hover() {
+    text-decoration-line: underline;
+  }
+}
+
+.p-user-list__user-delete-btn {
+  margin: 0 auto;
+  padding: $space-2xsm $space-sm;
+  border-radius: map-get($border-radius-size, primary);
+  background-color: map-get($btn-bg-colors, white-back);
+}

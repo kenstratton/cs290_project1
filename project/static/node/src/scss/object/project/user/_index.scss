@@ -18,6 +18,7 @@
 * 
 */
 
+@use "../../../foundation/tools/global" as *;
 
 // Top セクション -----------------------------------------------
 // #p-index-top {}
@@ -31,33 +32,23 @@
   border-radius: map-get($border-radius-size, primary);
 }
 
-.p-index-top__entry-wrap {
-  margin-bottom: $space-lg;
-}
+.p-index-top__entry-wrap { margin-bottom: $space-lg; }
 
-.p-index-top__signin-entry {
-  background-color: map-get($bg-colors, secondary);
-}
+.p-index-top__signin-entry { background-color: map-get($bg-colors, secondary); }
 
-.p-index-top__signup-entry {
-  background-color: map-get($bg-colors, tertiary);
-}
+.p-index-top__signup-entry { background-color: map-get($bg-colors, tertiary); }
 
 // .p-index-top__image-wrap {}
 
 // About セクション ---------------------------------------------
-#p-index-about {
-  padding: $space-3xlg 0;
-  background-color: map-get($p-index-about, bg-color);
-}
+// #p-index-about { }
 
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
-.p-index-about__news-section-header{
-  margin-bottom: $space-xsm;
+.p-index-about__news-section-head{
+  margin-bottom: $space-sm;
   font-size: map-get($font-size, title-primary);
-  font-family: 'Itim', cursive;
-
+  font-style: italic;
 }
 
 .p-index-about__brief-wrap {
@@ -90,13 +81,11 @@
 }
 
 .p-index-about__news-wrap {
-  padding: $space-2xsm 0;
+  padding: $space-2xsm 0 $space-xsm;
   border-bottom: map-get($border, primary-sm);
 }
 
-.p-index-about__news-wrap:last-child {
-  border: none;
-}
+.p-index-about__news-wrap:last-child { border: none; }
 
 .p-index-about__news-header-wrap {
   display: flex;
@@ -118,23 +107,18 @@
 .p-index-about__news-content { line-height: $lineheight-half; }
 
 .p-index-about__news-date {
+  margin: $space-2xsm 0;
   font-size: map-get($font-size, date);
   color: map-get($font-colors, secondary);
 }
 
 
 // Func セクション ----------------------------------------------
-#p-index-func {
-  color: map-get($font-colors, white-back);
-  background-color: map-get($p-index-func, bg-color);
-}
+// #p-index-func {  }
 
-.p-index-func__modal-entry {
-  margin-bottom: $space-xlg;
-}
-.p-index-func__modal-entry:nth-child(5) {
-  margin: 0;
-}
+.p-index-func__modal-entry { margin-bottom: $space-xlg; }
+
+.p-index-func__modal-entry:nth-child(5) { margin: 0; }
 
 .p-index-func__img-wrap {
   transition: scale 0.2s ease;
@@ -175,7 +159,7 @@
   z-index: 7;
   opacity: 0;
   transform: scaleY(0);
-  transition: transform 0.3s ease-out, opacity 0.12s ease;
+  transition: transform 0.2s ease-out, opacity 0.08s ease-in;
   position: fixed;
   top: map-get($p-index-func, modal-top-pos);
   right: 0;

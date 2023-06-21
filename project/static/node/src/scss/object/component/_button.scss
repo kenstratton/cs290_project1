@@ -1,3 +1,7 @@
+// _button.scss
+
+@use "../../foundation/tools/global" as *;
+
 // ボタンのベースです
 .c-btn {
   display: flex;

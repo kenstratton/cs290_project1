@@ -1,6 +1,9 @@
 /*--------
 |  Base  | - default/reset
 --------*/
+
+@use 'tools/global' as *;
+
 * {
   box-sizing: border-box;
   color: inherit;
@@ -35,6 +38,6 @@ button {
   cursor: pointer;
 }
 
-tbody {
-  font-weight: 300;
+label {
+  cursor: pointer;
 }

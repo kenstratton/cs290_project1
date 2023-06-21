@@ -1,30 +1,35 @@
 # project > user > views.py
 
-
+import os
 from tabnanny import check
 from flask import Blueprint, g, request, session, flash, redirect, render_template, url_for
 from sqlalchemy import or_
 from functools import wraps
-from project import db # , assets
+from project import db
 from project.models.user import User
 from project.form import user_form
 from time import time
 from project.email import send_email
 from project.tokens import signup_token, psw_reset_token, decode_token
+from werkzeug.routing import Rule
 
+
+
+
+# Blueprints ----------------------------------------------
 
 user_bp = Blueprint('user', __name__,)
+entry_bp = Blueprint('entry', __name__, url_prefix='/entry')
+user_bp.register_blueprint(entry_bp)
+
+
 
 
 # Functions for Handling Resources within This Module -------------------
 
-# Seach user from name or email
-def search_user(name=None, email=None):
-    user = User.query.filter(
-        or_(
-            User.name==name,
-            User.email==email
-        )).first()
+# Seach user from name or email #! 未使用
+def search_user(class_member, value):
+    user = User.query.filter(class_member==value).first()
     return user
 
 
@@ -99,20 +104,10 @@ def render_temp(path, title=None, form=None, **kwrgs):
         path,
         title=title,
         form=form,
-        session=session,
-        # assets=assets,
+        g=g,
+        request=request,
         **kwrgs
         )
-
-
-
-
-# Things to be processed before any request -----------------------------
-
-@user_bp.before_request
-def before_request():
-    check_user_lifetime()
-    check_auth_lifetime()
 
 
 
@@ -133,7 +128,7 @@ def login_required(view):
     @wraps(view)
     def censored_view(*args, **kwargs):
         if not is_user_in_session():
-            return redirect(url_for('user.intl'))
+            return redirect(url_for('user.entry.login'))
         return view(*args, **kwargs)
     return censored_view
 
@@ -146,7 +141,7 @@ def authentication_required(type, dest=None):
             if is_auth_in_session():
                 return view(*args, **kwargs)
             elif type=='reset_psw':
-                return redirect(url_for('user.forgot_password'))
+                return redirect(url_for('user.entry.forgot_password'))
             elif type=='update_info':
                 return redirect(url_for('user.password_auth', dest=dest))
         return censored_view
@@ -155,27 +150,35 @@ def authentication_required(type, dest=None):
 
 
 
-# Views for Incidents ---------------------------------------------------
+# Things to be processed before any request -----------------------------
 
-# Maintenance page
-@user_bp.route('/maintenance')
-def under_maintenace():
-    return render_temp('management/maintenance.html')
+@user_bp.before_request
+def before_request():
+    check_user_lifetime()
+    check_auth_lifetime()
 
 
 
 
 # Views for unauthorized users  -----------------------------------------
+#! entry と user blueprints にわけて実装中 -> header 有無を切替るのにURL情報を使用しようとする算段
+#! user : 単一画面での情報編集等なのでheaderは常に表示 
+#! entry : は "entry"をURL付属で判別可能
+#! password 変更などのテンプレを使い回す際の棲み分けは？???
+#! -> user は全体非同期でいくのでテンプレ引用のみでOK(headerへの仕掛けいらない)
+#! ->> やっぱいるか...パスワ変更時にメール認証あるし
+#! ->>> メール認証いらん、既存pswで...ログイン状態ならpswわかるし、忘れならログ前でリセット行為するはず
+
 
 # Initial page for unauthorized users
-@user_bp.route('/intl')
+@entry_bp.route('/')
 @is_logged_in
-def intl():
-    return render_temp('project/user/main/intl.html')
+def entry():
+    return render_temp('project/user/main/entry.html')
 
 
 #【Sign up】Sign up
-@user_bp.route('/signup', methods=['GET', 'POST'])
+@entry_bp.route('/signup', methods=['GET', 'POST'])
 @is_logged_in
 def signup():
     form = user_form(['name', 'email', 'psw_conf'], True)
@@ -187,13 +190,13 @@ def signup():
         html = render_temp('project/user/email/confirm_user_account.html', url=url)
         send_email(form.email.data, subject, html)
         flash(f"We sent a user authentication email to [ {form.email.data} ]. Activate your account via the email.")
-        return redirect(url_for('user.intl'))
+        return redirect(url_for('user.entry'))
 
     return render_temp('project/user/main/auth.html', 'Sign Up', form)
 
 
 #【Sign up】Confirm a request to create user account
-@user_bp.route('/signup_conf/<token>')
+@entry_bp.route('/signup_conf/<token>')
 @is_logged_in
 def confirm_signup(token):
     data = decode_token(token)
@@ -210,46 +213,34 @@ def confirm_signup(token):
 
 
 #【Log In】
-@user_bp.route('/login', methods=['GET', 'POST'])
+@entry_bp.route('/login', methods=['GET', 'POST'])
 @is_logged_in
 def login():
-    form = user_form(['pl_info', 'psw'])  #! pl て分かりにくない？
+    form = user_form(['email', 'psw'], lgin_type="user")
 
-    if form.validate_on_submit(): #! search_user() name, email統一できる？
-        user_to_login = search_user(form.pl_info.data, form.pl_info.data)
+    if form.validate_on_submit():
+        # user_to_login = User.query.filter_by(email=form.email.data).first()
+        user_to_login = User.query.filter_by(email=form.email.data).first()
 
         if user_to_login and user_to_login.verify_password(form.psw.data):
             set_user_session(user_to_login)
             return redirect(url_for('user.index'))
-        return redirect(url_for('user.login'))
 
     return render_temp('project/user/main/auth.html', 'Log In', form)
 
 
-#【Log out】
-@user_bp.route('/logout')
-@login_required
-def logout():
-    clear_user_session()
-    return redirect(url_for('user.intl'))
-
-
-
-
-# Views for BOTH authorized and unauthorized users  ---------------------
-
 #【Password Reset】
-@user_bp.route('/forgot_password', methods=['GET', 'POST'])
+@entry_bp.route('/forgot_password', methods=['GET', 'POST'])
 @is_logged_in
 def forgot_password():
-    form = user_form(['email_auth'])
+    form = user_form(['email'])
 
     if form.validate_on_submit():
         email = form.email.data
-        user = search_user(email=email)
+        user = User.query.filter_by(email=email).first()
 
-        if user == None:
-            flash(f'User of {email} doesn\'t exist.')
+        if user == None or user.admin == True:
+            flash(f'User with {email} doesn\'t exist.')
             return redirect(url_for('user.forgot_password'))
 
         subject = "【Log Base】Please confirm your email !"
@@ -258,7 +249,7 @@ def forgot_password():
         html = render_temp('project/user/email/confirm_password_reset.html', url=url)
         send_email(email, subject, html)
         flash(f"We sent a confirmation email to [ {email} ]. Confirm the email to reset the password for your account.")
-        return redirect(url_for('user.intl'))
+        return redirect(url_for('user.entry'))
 
     return render_temp(
         'project/user/main/auth.html',
@@ -266,7 +257,7 @@ def forgot_password():
 
 
 #【Password Reset】Inspect a received token and go to the reset page 
-@user_bp.route('/confirm_password_reset/<token>')
+@entry_bp.route('/confirm_password_reset/<token>')
 @is_logged_in
 def confirm_password_reset(token):
     data = decode_token(token)
@@ -274,29 +265,32 @@ def confirm_password_reset(token):
         'user.reset_password', email=data['email']))
 
 
-#! tokenの時間制限。。。役割果たしてる？
-#! パスワへんこうできんくね？
-#*【Password Reset】Form page to reset password 
-@user_bp.route('/reset_password/<email>', methods=['GET', 'POST'])
+#【Password Reset】Form page to reset password 
+@entry_bp.route('/reset_password/<email>', methods=['GET', 'POST'])
 @is_logged_in
 def reset_password(email):
     form = user_form(['psw_conf'])
 
     set_auth_session()
     if form.validate_on_submit():
-        user = search_user(email=email)
+        user = User.query.filter_by(email=email).first()
         if user:
             user.password = form.psw.data
-            user.name = "ken"
             db.session.commit()
-            # flash('Your new password was successfully set!')
-            psw = user.verify_password(form.psw.data)
-            flash(f'{psw}')
-            return redirect(url_for('user.intl'))
+            flash(f'Password for {email} was successfully reset!')
+        else:
+            flash(f'User with {email} doesn\'t exist.')
+        
+        return redirect(url_for('user.entry'))
 
     return render_temp(
         'project/user/main/auth.html',
         'Reset Passoword', form)
+
+
+
+
+# Views for BOTH authorized and unauthorized users  ---------------------
 
 
 
@@ -391,3 +385,11 @@ def password():
         form.psw.data = ''
 
     return render_temp('user/contents/profile/reset_password.html', 'Profile / Password', form)
+
+
+#【Log out】
+@user_bp.route('/logout')
+@login_required
+def logout():
+    clear_user_session()
+    return redirect(url_for('user.entry.entry'))

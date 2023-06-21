@@ -1,9 +1,9 @@
 // validate.js
 
 // Change input form designs at the Admin > Add User page
-var change_form_design = () => {
-    var input_list = []
-    var error_list = []
+let change_form_design = () => {
+    let input_list = []
+    let error_list = []
 
     input_list.push(document.getElementById('name'))
     input_list.push(document.getElementById('email'))
@@ -14,9 +14,8 @@ var change_form_design = () => {
     error_list.push(document.getElementById('error_psw'))
 
     for (let i = 0; i < 3; i++) {
-        if (error_list[i] && error_list[i].dataset.error == "1") {
-            input_list[i].classList.add("is-invalid")
-        }
+        if (error_list[i] && error_list[i].dataset.error == "1")
+            input_list[i].classList.add("is-invalid");
     };
 };
 

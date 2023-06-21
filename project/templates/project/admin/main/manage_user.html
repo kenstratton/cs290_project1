@@ -7,7 +7,12 @@
 <div class="l-main__section">
 
     <div class="content">
-        <h1 class="l-main__section-header">{{title}}</h1>
+        <h1 class="l-main__section-header">
+            {{title}} 
+            {% if title == "Edit User" %}
+            ( ID {{user_id}} )
+            {% endif %}
+        </h1>
 
         <form method="POST" id="user_form" class="p-form__wrap" novalidate>
             {{ form.hidden_tag() }}
@@ -31,6 +36,12 @@
             <p class="p-form__error-msg" id="error_email" data-error="{{form.is_valid('email')}}">
                 {{form.email.errors[0]}}</p>
             {{ form.email(class="p-form__input") }}
+
+
+            <div class="p-form__checkbox-wrap">
+                {{ form.psw_disabled(class="p-form__checkbox p-form__disabled-trigger") }}
+                {{ form.psw_disabled.label(class="p-form__checkbox-label") }}
+            </div>
 
 
             {{ form.psw.label(class="p-form__input-label") }}

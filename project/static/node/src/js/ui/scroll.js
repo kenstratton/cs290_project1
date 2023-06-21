@@ -10,41 +10,48 @@
 |   - 
 ---------------------------------------------*/
 
-// scrollのクリック先と対象
-const scl_elm_name_list = {
-    "#l-header__top-entry" : "#p-index-top",
+// scrollのクリック先とスクロール先
+const SCL_ELM_NAME_LIST = {
+    "#l-header__top-entry"   : "#p-index-top",
     "#l-header__about-entry" : "#p-index-about",
+    "#l-header__func-entry"  : "#p-index-func",
     "#l-header__modal-opener--p-index-func-channel" : "#p-index-func",
     "#l-header__modal-opener--p-index-func-meeting" : "#p-index-func",
     "#l-header__modal-opener--p-index-func-message" : "#p-index-func",
 };
 
-// scroll後にtoggleするクリック先と対象
-const scl_toggler_list = {
+// scroll後にtoggleするクリック先と切替対象
+const SCL_TOGGLER_LIST = {
     "l-header__modal-opener--p-index-func-channel" :  "p-index-func__modal-opener--channel",
     "l-header__modal-opener--p-index-func-meeting" :  "p-index-func__modal-opener--meeting",
     "l-header__modal-opener--p-index-func-message" :  "p-index-func__modal-opener--message",
 };
 
-const scl_key_elm_list = get_element(Object.keys(scl_elm_name_list));
-const scl_target_elm_list = get_element(Object.values(scl_elm_name_list));
+// クリック先(key)およびスクロール先(value)の各要素を配列に格納
+const SCL_KEY_ELM_LIST = get_element(Object.keys(SCL_ELM_NAME_LIST));
+const SCL_TARGET_ELM_LIST = get_element(Object.values(SCL_ELM_NAME_LIST));
 
 scroll = () => {
-    scl_key_elm_list.map(ke => {
+    if (!SCL_KEY_ELM_LIST[0]) return [];
+    SCL_KEY_ELM_LIST.map(ke => {
         ke.addEventListener('click', () => {
 
-            var ke_idx = scl_key_elm_list.indexOf(ke);
-            scl_target_elm_list[ke_idx].scrollIntoView({  
-                behavior: 'smooth'
+            let ke_idx = SCL_KEY_ELM_LIST.indexOf(ke);
+            let rect_top = SCL_TARGET_ELM_LIST[ke_idx].getBoundingClientRect().top;
+            let position_y = window.pageYOffset;
+            let target = rect_top + position_y;
+            let header = get_element("#l-header");
+            if (header) target -= header.clientHeight;
+            window.scrollTo({
+                top: target,
+                behavior: 'smooth',
             });
 
-            if (scl_toggler_list[ke.id]) {
-                var toggler = document.getElementById(scl_toggler_list[ke.id]);
-                var target = get_element(tgl_target_list[toggler.id]);
+            if (SCL_TOGGLER_LIST[ke.id]) {
+                let toggler = document.getElementById(SCL_TOGGLER_LIST[ke.id]);
+                let target = get_element(TGL_TARGET_LIST[toggler.id]);
                 toggle_target_data(toggler, target);
-                console.log(target);
             }
-            
         })
     })
 }

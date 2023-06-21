@@ -4,12 +4,14 @@
 
 {% block title %}
 {% if title != None %}{{ title }} ー {% endif %}
-ADMIN | LOGBASE
+ADMIN | {{super()}}
 {% endblock %}
 
 {% block layout %}
 
+{% if request.path != "/admin/login" %}
 {% include 'project/admin/shared/header.html' %}
+{% endif %}
 
 <div class="l-main">
     {% block main %}{% endblock %}

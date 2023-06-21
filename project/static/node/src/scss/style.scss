@@ -45,18 +45,18 @@ Sassを使用している場合は以下のルール
    @mixinを@extendの次に指定します
    @contentを使用している@mixinは最後に指定します
    .baz {
-    $padding: 1em;
-    @extend %base-unit;
-    @include clearfix;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $padding;
-    padding-left: $padding;
-    @include media-query(md) {
-        padding-right: ($padding * 2);
-        padding-left: ($padding * 2);
-    }
+   $padding: 1em;
+   @extend %base-unit;
+   @include clearfix;
+   display: block;
+   margin-right: auto;
+   margin-left: auto;
+   padding-right: $padding;
+   padding-left: $padding;
+   @include media-query(md) {
+      padding-right: ($padding * 2);
+      padding-left: ($padding * 2);
+   }
 }
 
 ▼ プロパティ宣言順
@@ -74,18 +74,25 @@ mixin
 |  Foundation                                                       |
 -------------------------------------------------------------------*/
 
-@import "foundation/variable";
-@import "foundation/vendors";
-@import "foundation/mixin";
-@import "foundation/reset";
-@import "foundation/base";
+@use "foundation/vendors" with (
+   // bootstrap内の変数の上書き
+   $grid-breakpoints: (
+      sp:    480px,
+      tab:   768px,
+      pc:    1024px
+   )
+);
+@use "foundation/reset";
+@use "foundation/base";
 
 /*-------------------------------------------------------------------
 |  Layout                                                           |
 |  ワイヤーフレームに定義されるような大きなコンテナブロック(IDセレクタ指定可)   |
 -------------------------------------------------------------------*/
 
-@import "layout/**";
+@use "layout/header";
+@use "layout/main";
+@use "layout/footer";
 
 /*-------------------------------------------------------------------
 |  Object                                                           |
@@ -93,13 +100,23 @@ mixin
 
 /*  Component  -----------------------------------------*/
 // Component 再利用できるような小さなモジュール、固有の幅や装飾的なスタイルは極力指定しない
-@import "object/component/**";
+@use "object/component/button";
+@use "object/component/wrapper";
 
 /*   Project   -----------------------------------------*/
 // プロジェクト固有のUI(殆どのスタイルの追加はこのレイヤー)
-@import "object/project/**";
+@use "object/project/admin/admin";
+@use "object/project/admin/user";
+@use "object/project/user/index";
+@use "object/project/shared";
+@use "object/project/auth";
+@use "object/project/form";
+@use "object/project/management";
+
+
+
 
 /*    Theme    -----------------------------------------*/
 
 /*   Utility   -----------------------------------------*/
-@import "object/utility/**";
+@use "object/utility/utility";

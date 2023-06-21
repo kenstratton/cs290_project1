@@ -100,12 +100,13 @@ $bg-colors: (
   "secondary":      $gray-2xh,
   "tertiary":       $gray-h,
   "index-modal":    $gray-2xl,
+  "loading":        $white
 ) !default;
 
 // ボタンの色
 $btn-bg-colors: (
-  "primary":       $gray-xh,
-  "secondary":     $gray-l,
+  "primary":        $gray-xh,
+  "secondary":      $gray-l,
   "white-back":     $black,
 ) !default;
 
@@ -134,6 +135,9 @@ $font-size: (
   "title-tertiary":        $font-size-md,
   "title-quaternary":      $font-size-sm,
   "link-primary":          $font-size-md,
+  "table-label-primary":   $font-size-md,
+  "table-label-secondary": $font-size-sm,
+  "card":                  $font-size-md,
   "btn-icon":              $font-size-sm,
   "label":                 $font-size-md,
   "input":                 $font-size-sm,
@@ -157,6 +161,9 @@ $lineheight-size: (
 $border-size-base:      1px !default;
 $border-size-sm:        $border-size-base * 0.5 !default;
 $border-size-md:        $border-size-base * 1 !default;
+$border-size-lg:        $border-size-base * 2 !default;
+$border-size-xlg:        $border-size-base * 4 !default;
+
 
 $border: (
   "primary":            $border-size-md solid map-get($border-colors, primary),
@@ -164,6 +171,7 @@ $border: (
   "secondary":          $border-size-md solid map-get($border-colors, secondary),
   "secondary-sm":       $border-size-sm solid map-get($border-colors, secondary),
   "white-back":         $border-size-md solid map-get($border-colors, white-back),
+  "notice-card":        $border-size-xlg solid map-get($border-colors, primary),
 ) !default;
 
 $border-radius-base:    1rem !default;

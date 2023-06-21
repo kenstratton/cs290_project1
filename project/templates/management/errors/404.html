@@ -1,0 +1,28 @@
+<!-- 404.html -->
+
+{% extends 'management/layout.html' %}
+{% block title %}404 Error {{super()}}{% endblock %}
+{% block main %}
+
+<div class="l-main__section">
+     <div class="content">
+          <div class="l-main__link-section">
+               <a href="{{url_for('user.entry.entry')}}" class="u-txt-opt">
+                    <i class="fa-solid fa-angles-left"></i>
+                    <p class="l-main__link-section-text">Home</p>
+               </a>
+          </div>
+          <h1 class='l-main__section-header'>404 Error</h1>
+          <p class="l-main__section-brief p-management__section-brief">
+               Sorry, the page
+               <code class="p-management__code">{{path}}</code>
+               could not be found.
+          </p>
+          <div class='p-management__notice-wrap'>
+               <p>There are the possibilities below:</p>
+               <p>・ The requested page was transferred or deleted.</p>
+               <p>・ The requested link expired.</p>
+          </div>
+     </div>
+</div>
+{% endblock %}

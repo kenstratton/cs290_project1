@@ -150,12 +150,12 @@ module.exports = (env, argv) => {
                       },
                     ],
                     // CSSプロパティをソート
-                    [
-                      'css-declaration-sorter', 
-                      { 
-                        order: 'alphabetical' 
-                      }
-                    ],
+                    // [
+                    //   'css-declaration-sorter', 
+                    //   { 
+                    //     order: 'alphabetical' 
+                    //   }
+                    // ],
                     // CSSのminifyを行う
                     cssMinifier
                   ],

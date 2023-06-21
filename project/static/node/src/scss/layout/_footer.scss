@@ -1,5 +1,7 @@
 // _footer.scss
 
+@use "../foundation/tools/global" as *;
+
 .l-footer {
   height: map-get($l-footer, height);
   padding: map-get($l-footer, padding);

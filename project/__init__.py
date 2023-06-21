@@ -4,7 +4,7 @@
 # Config --------------------------------------------------
 
 import os
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -27,25 +27,6 @@ migrate = Migrate(app, db)
 
 
 
-# Assets ----------------------------------------------
-#* scssはwebpackでの実装に変更
-
-# from flask_assets import Environment, Bundle
-# assets = Environment(app)
-# assets.url = app.static_url_path
-# bundles = {
-#     'main_scss': Bundle(
-#         'scss/sample.scss',
-#         filters='libsass',
-#         output='main.css'
-#     )
-# }
-# assets.register(bundles)
-
-
-
-
-
 # Blueprints ----------------------------------------------
 
 # import project.views
@@ -63,14 +44,21 @@ app.register_blueprint(user_bp)
 # No permission to access the server
 @app.errorhandler(403)
 def forbidden_page(e):
-    return render_template("errors/403.html"), 403
+    return render_template("management/errors/403.html"), 403
 
 # Invalid URL
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('errors/404.html'), 404
+    return render_template('management/errors/404.html', path=request.path), 404
 
 # Internal server error
 @app.errorhandler(500)
 def page_not_found(e):
-    return render_template('errors/500.html'), 500
+    return render_template('management/errors/500.html'), 500
+
+# Views for Incidents -------------------------------------
+
+# Maintenance page
+@app.route('/maintenance')
+def under_maintenace():
+    return render_template('management/maintenance.html')

@@ -1,8 +1,11 @@
 // _header.scss
 
+@use "../foundation/tools/global" as *;
+
 .l-header__submenu-toggler,
 .l-header__main-layer-entry, .l-header__sub-layer-entry {
   padding: $space-sm 0;
+  cursor: pointer;
   @include hover() {
     background-color: map-get($bg-colors, secondary);
   }
@@ -12,9 +15,12 @@
   }
 }
 
-.l-header__sub-layer-entry { display: flex; }
+.l-header__sub-layer-entry { 
+  display: flex;
+  align-items: center;
+}
 
-.l-header {
+#l-header {
   align-items: center;
   z-index: 5;
   position: fixed;
@@ -40,7 +46,7 @@
   width: 100%;
   padding: 0 $space-lg;
   background-color: map-get($bg-colors, primary);
-  @include mq(tab-less) {
+  @include mq(tab-max) {
     flex: none;
   }
 }
@@ -102,7 +108,7 @@
   z-index: 4;
   padding: 0 $space-xlg;
   background-color: map-get($bg-colors, primary);
-  @include mq(tab-less) {
+  @include mq(tab-max) {
     flex-flow: column;
     align-items: initial;
     z-index: 3;
@@ -129,7 +135,7 @@
 }
 
 .l-header__mainmenu-item + li {
-  @include mq(tab-less) {
+  @include mq(tab-max) {
     border-top: map-get($border, primary);
   }
 }
@@ -138,7 +144,7 @@
   display: none;
   @include mq(pc) {
     position: absolute;
-    top: 40px;
+    top: 38px;
     right: 0;
     width: max-content;
     min-width: 220px;
@@ -148,7 +154,7 @@
     border-radius: map-get($border-radius-size, primary);
     background-color: map-get($bg-colors, primary);
   }
-  @include mq(tab-less) {
+  @include mq(tab-max) {
     &[data-status="on"] {
       display: block;
     }
@@ -202,9 +208,8 @@
 
 .l-header__flash-wrap {
   display: flex;
-  position: absolute;
+  position: fixed;
   top: map-get($l-header, container-height);
-  left: 0;
 }
 
 .l-header__flash-message {

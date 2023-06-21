@@ -3,7 +3,7 @@
 
 // アニメーション系プロパティの誤表示を防ぐ要素(.preload)を削除します(Chromのバグが原因だったり)
 remove_preload = () => {
-    var preload = document.querySelectorAll('.u-preload');
+    let preload = document.querySelectorAll('.u-preload');
     preload.forEach( (pre) => {
         setTimeout((e) => { // 1秒後に削除(プロジェクト内のアニメーション設定は1秒以内であるため)
             pre.classList.remove('u-preload');

@@ -16,8 +16,7 @@ class User(db.Model):
     email = Column(String(120), unique=True, nullable=False)
     hashed_password = Column(String(128), nullable=False)
     admin = Column(Boolean, nullable=False, default=False)
-    confirmed = Column(Boolean, nullable=False, default=False) #いらない(view内のロジックで管理) -> 消す時既存のデータも削除
-    # master = Column(Boolean, nullable=False, default=False)
+    master = Column(Boolean, nullable=False, default=False)
     date_added = Column(DateTime, default=datetime.utcnow() + timedelta(hours=-8))
 
     def __repr__(self):

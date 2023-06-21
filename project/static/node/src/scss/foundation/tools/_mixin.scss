@@ -1,11 +1,13 @@
 // _mixin.scss
 
+@use "sass:meta";
+
 // メディアクエリ ---------------------------------------------------------
 $breakpoints: (
   sp:         'screen and (max-width: 767px)',
-  tab-less:   'screen and (max-width: 1024px)',
+  tab-max:    'screen and (max-width: 1024px)',
   tab:        'screen and (min-width: 768px) and (max-width: 1024px)',
-  tab-more:   'screen and (min-width: 768px)',
+  tab-min:    'screen and (min-width: 768px)',
   pc:         'screen and (min-width: 1025px)'
 );
 

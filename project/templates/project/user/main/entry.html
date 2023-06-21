@@ -1,4 +1,4 @@
-<!-- intl.html -->
+<!-- entry.html -->
 
 {% extends 'project/user/layout.html' %}
 
@@ -9,11 +9,11 @@
         <h1 class="l-main__section-header">WELCOME TO LOG BASE</h1>
         <div class="row">
         <div class="p-index-top__entry-wrap col-sp-12 col-tab-5">
-            <a href="{{url_for('user.login')}}" class="p-index-top__entry p-index-top__signin-entry">
+            <a href="{{url_for('user.entry.login')}}" class="p-index-top__entry p-index-top__signin-entry">
             サインイン
             <i class="fa-solid fa-angles-right"></i>
             </a>
-            <a href="{{url_for('user.signup')}}" class="p-index-top__entry p-index-top__signup-entry">
+            <a href="{{url_for('user.entry.signup')}}" class="p-index-top__entry p-index-top__signup-entry">
             アカウントを作成
             <i class="fa-solid fa-angles-right"></i>
             </a>
@@ -28,7 +28,7 @@
     <div class="content row">
         <h1 class="l-main__section-header">このサイトについて</h1>
         <div class="p-index-about__brief-wrap col-sp-12 col-tab-6">
-        <div class="p-index__section-brief">
+        <div class="l-main__section-brief">
             こちらはポートフォリオ用に作成したWEBアプリです。
             <br>
             基本用途はグループ内でのメッセージのやり取りですが、
@@ -42,7 +42,7 @@
         </div>
         </div>
         <div class="col-sp-12 col-tab-6">
-        <h3 class="p-index-about__news-section-header">- Latest news -</h3>
+        <h3 class="p-index-about__news-section-head">- Latest news -</h3>
         <ul class="p-index-about__news-list">
             <li class="p-index-about__news-wrap">
             <div class="p-index-about__news-header-wrap">

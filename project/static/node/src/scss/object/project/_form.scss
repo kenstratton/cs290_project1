@@ -1,0 +1,59 @@
+// _auth.scss
+
+@use "../../foundation/tools/global" as *;
+
+.p-form__wrap {
+  width: 50%;
+  min-width: 250px;
+  margin: 0 auto;
+}
+
+.p-form__input-label { font-size: map-get($font-size, label); }
+
+.p-form__input {
+  width: 100%;
+  margin: $space-2xsm 0 $space-lg;
+  padding: $space-sm;
+  border: map-get($border, primary);
+  border-radius: map-get($border-radius-size, primary);
+  font-size: map-get($font-size, input);
+  font-weight: 600;
+  background-color: map-get($bg-colors, primary);
+}
+
+.p-form__error-msg {
+  float: right;
+  font-size: map-get($font-size, note);
+  color: map-get($font-colors, alert);
+}
+
+.p-form__submit {
+  margin: $space-lg auto 0;
+  border: none;
+}
+
+#p-form__password-visualizer {
+  i:last-child { display: none; }
+}
+
+.p-form__checkbox-wrap {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.p-form__checkbox-label {
+  padding: $space-2xsm $space-sm;
+  border-radius: map-get($border-radius-size, primary);
+  background-color: map-get($btn-bg-colors, primary);
+}
+
+.p-form__checkbox { display: none; }
+
+.p-form__checkbox:checked + .p-form__checkbox-label {
+  background-color: map-get($btn-bg-colors, secondary);
+}
+
+.p-form__input:disabled {
+  text-decoration-line: line-through;
+  background-color: map-get($bg-colors, secondary);
+}

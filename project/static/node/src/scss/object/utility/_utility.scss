@@ -1,5 +1,7 @@
 //_utility.scss
 
+@use "../../foundation/tools/global" as *;
+
 // 該当のデバイス画角に対応するdisplay:noneです -------------------------------------
 
 //Smartphone(sp)
@@ -10,8 +12,14 @@
 }
 
 //Tablet(tab)
-.u-dn-tab {
-  @include mq(tab-less) {
+.u-dn-tab-max {
+  @include mq(tab-max) {
+    display: none !important;
+  }
+}
+
+.u-dn-tab-min {
+  @include mq(tab-min) {
     display: none !important;
   }
 }
@@ -35,8 +43,15 @@
 }
 
 //Tablet(tab)
-.u-non-anim-tab {
-  @include mq(tab-less) {
+.u-non-anim-tab-max {
+  @include mq(tab-max) {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+.u-non-anim-tab-min {
+  @include mq(tab-min) {
     transition: none !important;
     transform: none !important;
   }
